@@ -1,0 +1,560 @@
+/* Responsive Design */
+
+/* Base - Mobile First */
+@media screen and (max-width: 320px) {
+    .auth-card {
+        padding: 25px 20px;
+    }
+    
+    .logo h1 {
+        font-size: 1.5rem;
+    }
+    
+    .form-group input {
+        padding: 12px 14px;
+        font-size: 0.9rem;
+    }
+    
+    .btn-primary {
+        padding: 14px;
+        font-size: 0.9rem;
+    }
+    
+    .welcome-section h1 {
+        font-size: 1.3rem;
+    }
+    
+    .progress-ring {
+        width: 80px;
+        height: 80px;
+    }
+    
+    .stat-value {
+        font-size: 1.4rem;
+    }
+}
+
+/* Small devices */
+@media screen and (min-width: 321px) and (max-width: 480px) {
+    .auth-card {
+        padding: 30px 25px;
+    }
+    
+    .dashboard-main {
+        padding: 20px 15px;
+    }
+    
+    .welcome-section {
+        padding: 25px 20px;
+    }
+    
+    .welcome-section h1 {
+        font-size: 1.4rem;
+    }
+    
+    .progress-summary {
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+    }
+    
+    .levels-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Medium devices (Tablets) */
+@media screen and (min-width: 481px) and (max-width: 768px) {
+    .auth-card {
+        padding: 35px 30px;
+    }
+    
+    .levels-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .modules-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .dashboard-main {
+        padding: 25px 20px;
+    }
+    
+    .welcome-section {
+        padding: 30px 25px;
+    }
+}
+
+/* Large devices (Small laptops) */
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+    .levels-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    
+    .modules-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Extra large devices */
+@media screen and (min-width: 1025px) {
+    .dashboard-main {
+        max-width: 1200px;
+    }
+}
+
+/* Navigation - Mobile */
+@media screen and (max-width: 768px) {
+    .menu-toggle {
+        display: block;
+    }
+    
+    .header-left .logo-small span:last-child {
+        display: none;
+    }
+    
+    .user-info {
+        display: none;
+    }
+    
+    .dashboard-header {
+        padding: 12px 15px;
+    }
+}
+
+/* Auth screens - Mobile */
+@media screen and (max-width: 480px) {
+    #auth-container {
+        padding: 15px;
+    }
+    
+    .auth-card {
+        border-radius: var(--radius);
+    }
+    
+    .logo-icon {
+        font-size: 2.5rem;
+    }
+    
+    .auth-links {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .auth-links .divider {
+        display: none;
+    }
+    
+    .form-group {
+        margin-bottom: 15px;
+    }
+    
+    .form-group label {
+        font-size: 0.85rem;
+    }
+}
+
+/* Dashboard - Mobile */
+@media screen and (max-width: 480px) {
+    .welcome-section {
+        border-radius: var(--radius);
+        padding: 20px 15px;
+    }
+    
+    .welcome-section h1 {
+        font-size: 1.2rem;
+    }
+    
+    .welcome-section p {
+        font-size: 0.9rem;
+    }
+    
+    .progress-details {
+        gap: 20px;
+    }
+    
+    .stat-value {
+        font-size: 1.5rem;
+    }
+    
+    .stat-label {
+        font-size: 0.75rem;
+    }
+    
+    .section-title {
+        font-size: 1.2rem;
+    }
+    
+    .level-card {
+        padding: 20px;
+    }
+    
+    .level-icon {
+        font-size: 2rem;
+    }
+    
+    .level-title {
+        font-size: 1.1rem;
+    }
+}
+
+/* Level Detail - Mobile */
+@media screen and (max-width: 480px) {
+    .detail-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+        padding: 15px;
+    }
+    
+    .level-info h1 {
+        font-size: 1.3rem;
+    }
+    
+    .level-main {
+        padding: 15px;
+    }
+    
+    .modules-section h2,
+    .exercises-preview h2 {
+        font-size: 1.1rem;
+    }
+    
+    .modules-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .module-card {
+        padding: 15px;
+    }
+    
+    .module-icon {
+        font-size: 1.5rem;
+    }
+    
+    .module-title {
+        font-size: 1rem;
+    }
+    
+    .exercises-preview {
+        padding: 20px 15px;
+    }
+    
+    .btn-start-test {
+        padding: 14px;
+        font-size: 1rem;
+    }
+}
+
+/* Exercise Screen - Mobile */
+@media screen and (max-width: 480px) {
+    .exercise-header {
+        flex-direction: column;
+        gap: 10px;
+        padding: 15px;
+    }
+    
+    .exercise-progress {
+        width: 100%;
+    }
+    
+    .exercise-progress .progress-bar {
+        flex: 1;
+    }
+    
+    .exercise-main {
+        padding: 15px;
+    }
+    
+    .exercise-container {
+        padding: 20px 15px;
+    }
+    
+    .exercise-type {
+        font-size: 0.75rem;
+    }
+    
+    .exercise-question {
+        font-size: 1rem;
+    }
+    
+    .option-btn {
+        padding: 12px 15px;
+        font-size: 0.9rem;
+    }
+    
+    .exercise-footer {
+        flex-direction: column;
+        gap: 10px;
+        padding: 15px;
+    }
+    
+    .exercise-footer button {
+        width: 100%;
+    }
+}
+
+/* Results Screen - Mobile */
+@media screen and (max-width: 480px) {
+    .results-container {
+        padding: 30px 20px;
+    }
+    
+    .results-icon {
+        font-size: 3rem;
+    }
+    
+    .results-container h1 {
+        font-size: 1.5rem;
+    }
+    
+    .score-circle {
+        width: 120px;
+        height: 120px;
+    }
+    
+    .score-text {
+        font-size: 2rem;
+    }
+    
+    .results-stats {
+        gap: 20px;
+    }
+    
+    .results-actions {
+        flex-direction: column;
+    }
+    
+    .results-actions button {
+        max-width: 100%;
+    }
+}
+
+/* Profile Screen - Mobile */
+@media screen and (max-width: 480px) {
+    .profile-main {
+        padding: 15px;
+    }
+    
+    .profile-card {
+        flex-direction: column;
+        text-align: center;
+        padding: 20px;
+    }
+    
+    .profile-avatar {
+        width: 70px;
+        height: 70px;
+        font-size: 1.5rem;
+    }
+    
+    .profile-info h2 {
+        font-size: 1.2rem;
+    }
+    
+    .profile-stats,
+    .settings-section {
+        padding: 20px 15px;
+    }
+    
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .stat-card {
+        padding: 15px;
+    }
+    
+    .stat-card .stat-value {
+        font-size: 1.5rem;
+    }
+    
+    .profile-actions {
+        flex-direction: column;
+    }
+    
+    .profile-actions button {
+        width: 100%;
+    }
+}
+
+/* Settings Screen - Mobile */
+@media screen and (max-width: 480px) {
+    .settings-main {
+        padding: 15px;
+    }
+    
+    .settings-section {
+        padding: 20px 15px;
+    }
+    
+    .setting-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+    
+    .setting-item label {
+        font-size: 0.9rem;
+    }
+}
+
+/* Support Screen - Mobile */
+@media screen and (max-width: 480px) {
+    .support-main {
+        padding: 15px;
+    }
+    
+    .faq-section,
+    .contact-section {
+        padding: 20px 15px;
+    }
+    
+    .faq-question {
+        font-size: 0.95rem;
+    }
+    
+    .contact-email {
+        font-size: 1rem;
+    }
+}
+
+/* Toast notifications - Mobile */
+@media screen and (max-width: 480px) {
+    #toast-container {
+        left: 10px;
+        right: 10px;
+        bottom: 10px;
+    }
+    
+    .toast {
+        max-width: 100%;
+    }
+}
+
+/* Touch improvements */
+@media (hover: none) and (pointer: coarse) {
+    .btn-primary:hover,
+    .btn-secondary:hover,
+    .btn-outline:hover,
+    .level-card:hover,
+    .module-card:hover,
+    .exercise-item:hover {
+        transform: none;
+    }
+    
+    .level-card:active,
+    .module-card:active,
+    .exercise-item:active {
+        transform: scale(0.98);
+    }
+    
+    .dropdown-menu {
+        display: none !important;
+    }
+    
+    .mobile-menu {
+        display: block;
+    }
+}
+
+/* Landscape mode adjustments */
+@media screen and (orientation: landscape) and (max-height: 500px) {
+    .auth-screen {
+        display: flex;
+        align-items: center;
+        min-height: auto;
+        padding: 20px;
+    }
+    
+    .auth-card {
+        max-width: 400px;
+        margin: 0 auto;
+    }
+    
+    .loader .book {
+        width: 40px;
+        height: 50px;
+    }
+    
+    .loader h2 {
+        font-size: 1.5rem;
+    }
+    
+    .welcome-section {
+        padding: 20px;
+    }
+    
+    .progress-ring {
+        width: 70px;
+        height: 70px;
+    }
+}
+
+/* High DPI displays */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    body {
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+}
+
+/* Print styles */
+@media print {
+    .dashboard-header,
+    .exercise-header,
+    .exercise-footer,
+    .mobile-menu,
+    #toast-container {
+        display: none !important;
+    }
+    
+    .screen {
+        display: block !important;
+    }
+    
+    body {
+        background: white;
+    }
+}
+
+/* Dark mode support (future) */
+@media (prefers-color-scheme: dark) {
+    /* Reserved for dark mode implementation */
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* Very small screens */
+@media screen and (max-width: 280px) {
+    .auth-card {
+        padding: 20px 15px;
+    }
+    
+    .logo h1 {
+        font-size: 1.3rem;
+    }
+    
+    .btn-primary {
+        padding: 12px;
+        font-size: 0.85rem;
+    }
+    
+    .welcome-section h1 {
+        font-size: 1rem;
+    }
+    
+    .level-card {
+        padding: 15px;
+    }
+}

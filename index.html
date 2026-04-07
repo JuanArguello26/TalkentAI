@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="TalkentAI - Plataforma de aprendizaje de inglés interactiva">
+    <title>TalkentAI - Aprende Inglés</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="app">
+        <!-- Pantalla de carga -->
+        <div id="loading-screen" class="loading-screen">
+            <div class="loader">
+                <div class="book">
+                    <div class="book-page"></div>
+                    <div class="book-page"></div>
+                    <div class="book-page"></div>
+                </div>
+                <h2>TalkentAI</h2>
+            </div>
+        </div>
+
+        <!-- Auth Screens -->
+        <div id="auth-container" class="screen hidden">
+            <!-- Login -->
+            <div id="login-screen" class="auth-screen">
+                <div class="auth-card fade-in">
+                    <div class="logo">
+                        <span class="logo-icon">📚</span>
+                        <h1>TalkentAI</h1>
+                    </div>
+                    <p class="tagline">Domina el inglés a tu propio ritmo</p>
+                    
+                    <form id="login-form">
+                        <div class="form-group">
+                            <label for="login-email">Correo electrónico</label>
+                            <input type="email" id="login-email" required placeholder="tu@email.com">
+                        </div>
+                        <div class="form-group">
+                            <label for="login-password">Contraseña</label>
+                            <input type="password" id="login-password" required placeholder="••••••••">
+                            <button type="button" class="toggle-password" onclick="togglePassword('login-password')">
+                                <span class="eye-icon">👁️</span>
+                            </button>
+                        </div>
+                        <button type="submit" class="btn-primary">
+                            <span>Iniciar Sesión</span>
+                            <span class="btn-arrow">→</span>
+                        </button>
+                    </form>
+                    
+                    <div class="auth-links">
+                        <a href="#" onclick="showForgotPassword()">¿Olvidaste tu contraseña?</a>
+                        <span class="divider">|</span>
+                        <a href="#" onclick="showRegister()">Crear cuenta</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Registro -->
+            <div id="register-screen" class="auth-screen hidden">
+                <div class="auth-card fade-in">
+                    <div class="logo">
+                        <span class="logo-icon">📚</span>
+                        <h1>TalkentAI</h1>
+                    </div>
+                    <p class="tagline">Comienza tu viaje de aprendizaje</p>
+                    
+                    <form id="register-form">
+                        <div class="form-group">
+                            <label for="register-name">Nombre completo</label>
+                            <input type="text" id="register-name" required placeholder="Juan Pérez">
+                        </div>
+                        <div class="form-group">
+                            <label for="register-email">Correo electrónico</label>
+                            <input type="email" id="register-email" required placeholder="tu@email.com">
+                        </div>
+                        <div class="form-group">
+                            <label for="register-password">Contraseña</label>
+                            <input type="password" id="register-password" required placeholder="Mínimo 8 caracteres" minlength="8">
+                            <button type="button" class="toggle-password" onclick="togglePassword('register-password')">
+                                <span class="eye-icon">👁️</span>
+                            </button>
+                        </div>
+                        <div class="form-group">
+                            <label for="register-confirm">Confirmar contraseña</label>
+                            <input type="password" id="register-confirm" required placeholder="••••••••">
+                        </div>
+                        <button type="submit" class="btn-primary">
+                            <span>Crear Cuenta</span>
+                            <span class="btn-arrow">→</span>
+                        </button>
+                    </form>
+                    
+                    <div class="auth-links">
+                        <a href="#" onclick="showLogin()">¿Ya tienes cuenta? Inicia sesión</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recuperar contraseña -->
+            <div id="forgot-screen" class="auth-screen hidden">
+                <div class="auth-card fade-in">
+                    <div class="logo">
+                        <span class="logo-icon">🔐</span>
+                        <h1>Recuperar Contraseña</h1>
+                    </div>
+                    <p class="tagline">Ingresa tu correo para recuperar el acceso</p>
+                    
+                    <form id="forgot-form">
+                        <div class="form-group">
+                            <label for="forgot-email">Correo electrónico</label>
+                            <input type="email" id="forgot-email" required placeholder="tu@email.com">
+                        </div>
+                        <button type="submit" class="btn-primary">
+                            <span>Enviar Código</span>
+                            <span class="btn-arrow">→</span>
+                        </button>
+                    </form>
+                    
+                    <div class="auth-links">
+                        <a href="#" onclick="showLogin()">← Volver al login</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Cambiar contraseña -->
+            <div id="change-password-screen" class="auth-screen hidden">
+                <div class="auth-card fade-in">
+                    <div class="logo">
+                        <span class="logo-icon">🔑</span>
+                        <h1>Nueva Contraseña</h1>
+                    </div>
+                    <p class="tagline">Crea una contraseña segura</p>
+                    
+                    <form id="change-password-form">
+                        <div class="form-group">
+                            <label for="new-password">Nueva contraseña</label>
+                            <input type="password" id="new-password" required placeholder="Mínimo 8 caracteres" minlength="8">
+                        </div>
+                        <div class="form-group">
+                            <label for="confirm-new-password">Confirmar contraseña</label>
+                            <input type="password" id="confirm-new-password" required placeholder="••••••••">
+                        </div>
+                        <button type="submit" class="btn-primary">
+                            <span>Cambiar Contraseña</span>
+                            <span class="btn-arrow">→</span>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Dashboard -->
+        <div id="dashboard" class="screen hidden">
+            <header class="dashboard-header">
+                <div class="header-left">
+                    <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+                    <div class="logo-small">
+                        <span>📚</span>
+                        <span>TalkentAI</span>
+                    </div>
+                </div>
+                <div class="header-right">
+                    <div class="user-menu">
+                        <div class="user-avatar" id="user-avatar">U</div>
+                        <div class="user-info">
+                            <span class="user-name" id="user-name">Usuario</span>
+                            <span class="user-level" id="user-level">Nivel: A1</span>
+                        </div>
+                        <div class="dropdown-menu" id="user-dropdown">
+                            <a href="#" onclick="showProfile()">👤 Perfil</a>
+                            <a href="#" onclick="showSettings()">⚙️ Configuración</a>
+                            <a href="#" onclick="logout()">🚪 Cerrar Sesión</a>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <main class="dashboard-main">
+                <div class="welcome-section fade-in-up">
+                    <h1>¡Bienvenido de vuelta, <span id="welcome-name">Aprendiz</span>!</h1>
+                    <p>Continúa tu viaje hacia la fluidez en inglés</p>
+                    <div class="progress-summary">
+                        <div class="progress-ring">
+                            <svg viewBox="0 0 100 100">
+                                <circle cx="50" cy="50" r="45" class="progress-bg"></circle>
+                                <circle cx="50" cy="50" r="45" class="progress-fill" id="overall-progress-ring"></circle>
+                            </svg>
+                            <span class="progress-text" id="overall-progress">0%</span>
+                        </div>
+                        <div class="progress-details">
+                            <div class="stat">
+                                <span class="stat-value" id="exercises-completed">0</span>
+                                <span class="stat-label">Ejercicios</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-value" id="tests-passed">0</span>
+                                <span class="stat-label">Tests Aprobados</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-value" id="current-level">A1</span>
+                                <span class="stat-label">Nivel Actual</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="levels-section">
+                    <h2 class="section-title">Tus Niveles de Inglés</h2>
+                    <div class="levels-grid" id="levels-grid">
+                        <!-- Los niveles se cargan dinámicamente -->
+                    </div>
+                </div>
+            </main>
+        </div>
+
+        <!-- Level Detail -->
+        <div id="level-detail" class="screen hidden">
+            <header class="detail-header">
+                <button class="back-btn" onclick="goBack()">← Volver</button>
+                <div class="level-info">
+                    <h1 id="level-title">Nivel A1</h1>
+                    <p id="level-description">Introducción al inglés</p>
+                </div>
+            </header>
+            
+            <main class="level-main">
+                <div class="modules-section">
+                    <h2>Módulos del Nivel</h2>
+                    <div class="modules-grid" id="modules-grid">
+                        <!-- Los módulos se cargan dinámicamente -->
+                    </div>
+                </div>
+                
+                <div class="exercises-preview">
+                    <h2>Pruebas y Ejercicios</h2>
+                    <div class="exercises-list" id="exercises-list">
+                        <!-- Los ejercicios se cargan dinámicamente -->
+                    </div>
+                    <button class="btn-start-test" onclick="startLevelTest()" id="start-test-btn">
+                        🎯 Realizar Prueba del Nivel
+                    </button>
+                </div>
+            </main>
+        </div>
+
+        <!-- Module Detail -->
+        <div id="module-detail" class="screen hidden">
+            <header class="detail-header">
+                <button class="back-btn" onclick="goBack()">← Volver</button>
+                <div class="level-info">
+                    <h1 id="module-title">Módulo</h1>
+                    <p id="module-progress">Progreso: 0%</p>
+                </div>
+            </header>
+            
+            <main class="module-main">
+                <div class="content-area" id="module-content">
+                    <!-- El contenido se carga dinámicamente -->
+                </div>
+                
+                <div class="module-exercises">
+                    <h3>Ejercicios del Módulo</h3>
+                    <div id="module-exercises-list">
+                        <!-- Ejercicios del módulo -->
+                    </div>
+                </div>
+            </main>
+        </div>
+
+        <!-- Exercise Screen -->
+        <div id="exercise-screen" class="screen hidden">
+            <header class="exercise-header">
+                <button class="back-btn" onclick="exitExercise()">✕ Salir</button>
+                <div class="exercise-progress">
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="exercise-progress-fill"></div>
+                    </div>
+                    <span id="exercise-progress-text">1/10</span>
+                </div>
+            </header>
+            
+            <main class="exercise-main">
+                <div class="exercise-container fade-in" id="exercise-container">
+                    <!-- El ejercicio se carga dinámicamente -->
+                </div>
+            </main>
+            
+            <footer class="exercise-footer">
+                <button class="btn-secondary" onclick="prevExercise()" id="prev-btn">← Anterior</button>
+                <button class="btn-primary" onclick="nextExercise()" id="next-btn">Siguiente →</button>
+            </footer>
+        </div>
+
+        <!-- Results Screen -->
+        <div id="results-screen" class="screen hidden">
+            <div class="results-container fade-in">
+                <div class="results-icon" id="results-icon">🎉</div>
+                <h1 id="results-title">¡Felicitaciones!</h1>
+                <p id="results-message">Has completado el ejercicio exitosamente</p>
+                
+                <div class="score-display">
+                    <div class="score-circle">
+                        <svg viewBox="0 0 100 100">
+                            <circle cx="50" cy="50" r="45" class="score-bg"></circle>
+                            <circle cx="50" cy="50" r="45" class="score-fill" id="score-ring"></circle>
+                        </svg>
+                        <span class="score-text" id="score-value">0%</span>
+                    </div>
+                </div>
+                
+                <div class="results-stats">
+                    <div class="stat">
+                        <span class="stat-value" id="correct-count">0</span>
+                        <span class="stat-label">Correctas</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-value" id="incorrect-count">0</span>
+                        <span class="stat-label">Incorrectas</span>
+                    </div>
+                </div>
+                
+                <div class="results-actions">
+                    <button class="btn-secondary" onclick="retryExercise()">🔄 Reintentar</button>
+                    <button class="btn-primary" onclick="continueAfterResult()">Continuar →</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Profile Screen -->
+        <div id="profile-screen" class="screen hidden">
+            <header class="detail-header">
+                <button class="back-btn" onclick="goBack()">← Volver</button>
+                <h1>Mi Perfil</h1>
+            </header>
+            
+            <main class="profile-main">
+                <div class="profile-card fade-in">
+                    <div class="profile-avatar">
+                        <span id="profile-avatar-text">U</span>
+                    </div>
+                    <div class="profile-info">
+                        <h2 id="profile-name">Usuario</h2>
+                        <p id="profile-email">usuario@email.com</p>
+                    </div>
+                </div>
+                
+                <div class="profile-stats">
+                    <h3>Estadísticas de Aprendizaje</h3>
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <span class="stat-icon">📚</span>
+                            <span class="stat-value" id="profile-exercises">0</span>
+                            <span class="stat-label">Ejercicios Completados</span>
+                        </div>
+                        <div class="stat-card">
+                            <span class="stat-icon">✅</span>
+                            <span class="stat-value" id="profile-tests">0</span>
+                            <span class="stat-label">Tests Aprobados</span>
+                        </div>
+                        <div class="stat-card">
+                            <span class="stat-icon">📊</span>
+                            <span class="stat-value" id="profile-avg">0%</span>
+                            <span class="stat-label">Promedio</span>
+                        </div>
+                        <div class="stat-card">
+                            <span class="stat-icon">🔥</span>
+                            <span class="stat-value" id="profile-streak">0</span>
+                            <span class="stat-label">Racha de Días</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="profile-actions">
+                    <button class="btn-outline" onclick="showChangePasswordForm()">🔑 Cambiar Contraseña</button>
+                    <button class="btn-outline" onclick="showExportData()">📥 Exportar Datos</button>
+                </div>
+            </main>
+        </div>
+
+        <!-- Settings Screen -->
+        <div id="settings-screen" class="screen hidden">
+            <header class="detail-header">
+                <button class="back-btn" onclick="goBack()">← Volver</button>
+                <h1>Configuración</h1>
+            </header>
+            
+            <main class="settings-main">
+                <div class="settings-section fade-in">
+                    <h3>Preferencias de Aprendizaje</h3>
+                    <div class="setting-item">
+                        <label>Dificultad de ejercicios</label>
+                        <select id="difficulty-setting" onchange="saveSetting('difficulty', this.value)">
+                            <option value="easy">Fácil</option>
+                            <option value="medium" selected>Medio</option>
+                            <option value="hard">Difícil</option>
+                        </select>
+                    </div>
+                    <div class="setting-item">
+                        <label>Mostrar pistas</label>
+                        <input type="checkbox" id="hints-setting" onchange="saveSetting('hints', this.checked)" checked>
+                    </div>
+                    <div class="setting-item">
+                        <label>Sonidos</label>
+                        <input type="checkbox" id="sounds-setting" onchange="saveSetting('sounds', this.checked)" checked>
+                    </div>
+                </div>
+                
+                <div class="settings-section fade-in">
+                    <h3>Cuenta</h3>
+                    <div class="setting-item">
+                        <button class="btn-danger" onclick="confirmDeleteAccount()">🗑️ Eliminar Cuenta</button>
+                    </div>
+                </div>
+            </main>
+        </div>
+
+        <!-- Support Screen -->
+        <div id="support-screen" class="screen hidden">
+            <header class="detail-header">
+                <button class="back-btn" onclick="goBack()">← Volver</button>
+                <h1>Soporte y Ayuda</h1>
+            </header>
+            
+            <main class="support-main">
+                <div class="faq-section fade-in">
+                    <h3>Preguntas Frecuentes</h3>
+                    <div class="faq-item">
+                        <button class="faq-question" onclick="toggleFAQ(this)">
+                            ¿Cómo puedo cambiar mi nivel?
+                            <span class="faq-icon">+</span>
+                        </button>
+                        <div class="faq-answer">
+                            Completa las pruebas del nivel actual con un 70% o más para desbloquear el siguiente nivel.
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question" onclick="toggleFAQ(this)">
+                            ¿Qué pasa si reprobé un test?
+                            <span class="faq-icon">+</span>
+                        </button>
+                        <div class="faq-answer">
+                            Puedes reintentar los ejercicios las veces que necesites. No hay límite de intentos.
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question" onclick="toggleFAQ(this)">
+                            ¿Cómo se guarda mi progreso?
+                            <span class="faq-icon">+</span>
+                        </button>
+                        <div class="faq-answer">
+                            Tu progreso se guarda automáticamente en tu navegador. Puedes continuar desde donde dejaste.
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="contact-section fade-in">
+                    <h3>Contacto</h3>
+                    <p>¿Tienes más preguntas? Escríbenos:</p>
+                    <a href="mailto:soporte@talkentai.com" class="contact-email">📧 soporte@talkentai.com</a>
+                </div>
+            </main>
+        </div>
+
+        <!-- Mobile Menu Overlay -->
+        <div class="mobile-menu" id="mobile-menu">
+            <div class="mobile-menu-header">
+                <span>📚 TalkentAI</span>
+                <button onclick="toggleMenu()">✕</button>
+            </div>
+            <nav class="mobile-menu-nav">
+                <a href="#" onclick="showDashboard(); toggleMenu()">🏠 Dashboard</a>
+                <a href="#" onclick="showProfile(); toggleMenu()">👤 Mi Perfil</a>
+                <a href="#" onclick="showSettings(); toggleMenu()">⚙️ Configuración</a>
+                <a href="#" onclick="showSupport(); toggleMenu()">❓ Ayuda</a>
+                <a href="#" onclick="logout(); toggleMenu()">🚪 Cerrar Sesión</a>
+            </nav>
+        </div>
+        
+        <!-- Toast Notifications -->
+        <div id="toast-container"></div>
+    </div>
+
+    <script src="js/db.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/levels.js"></script>
+    <script src="js/exercises.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>

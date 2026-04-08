@@ -6,14 +6,19 @@ function createStars() {
     const starsContainer = document.getElementById('stars');
     if (!starsContainer) return;
     
-    for (let i = 0; i < 100; i++) {
+    for (let i = 0; i < 150; i++) {
         const star = document.createElement('div');
-        star.className = 'star';
+        const size = Math.random();
+        if (size > 0.9) {
+            star.className = 'star large';
+        } else if (size > 0.7) {
+            star.className = 'star';
+        } else {
+            star.className = 'star small';
+        }
         star.style.left = Math.random() * 100 + '%';
         star.style.top = Math.random() * 100 + '%';
         star.style.animationDelay = Math.random() * 3 + 's';
-        star.style.width = Math.random() * 2 + 1 + 'px';
-        star.style.height = star.style.width;
         starsContainer.appendChild(star);
     }
 }

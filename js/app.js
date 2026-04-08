@@ -235,14 +235,23 @@ function initTipsCarousel() {
         </div>
     `).join('');
     
-    currentTipIndex = 0;
-    setInterval(() => {
-        const cards = carousel.querySelectorAll('.tip-card');
-        if (cards.length > 1) {
-            currentTipIndex = (currentTipIndex + 1) % cards.length;
-            cards[currentTipIndex].scrollIntoView({ behavior: 'smooth', inline: 'start' });
-        }
-    }, 5000);
+    let currentCard = 0;
+    const cards = carousel.querySelectorAll('.tip-card');
+    
+    if (cards.length > 1) {
+        setInterval(() => {
+            currentCard = (currentCard + 1) % cards.length;
+            cards.forEach((card, index) => {
+                if (index === currentCard) {
+                    card.style.opacity = '1';
+                    card.style.transform = 'scale(1)';
+                } else {
+                    card.style.opacity = '0.5';
+                    card.style.transform = 'scale(0.95)';
+                }
+            });
+        }, 4000);
+    }
 }
 
 async function updateDashboardStats() {

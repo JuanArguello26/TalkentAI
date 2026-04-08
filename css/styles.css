@@ -783,7 +783,11 @@ body::before {
 /* Dashboard */
 #dashboard {
     min-height: 100vh;
-    background: var(--dark);
+    background: transparent;
+}
+
+.dashboard-main {
+    background: transparent;
 }
 
 .dashboard-header {
@@ -1053,23 +1057,34 @@ body::before {
     border-radius: 10px;
 }
 
+.tips-section {
+    margin-bottom: 40px;
+}
+
+.tips-carousel {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
 .tip-card {
-    min-width: 300px;
-    max-width: 300px;
+    flex: 1;
+    min-width: 280px;
+    max-width: 350px;
     background: linear-gradient(145deg, var(--dark-light) 0%, var(--dark-medium) 100%);
     border-radius: var(--radius-lg);
     padding: 25px;
     border: 1px solid var(--glass-border);
     backdrop-filter: blur(10px);
-    scroll-snap-align: start;
-    transition: all 0.3s ease;
+    transition: all 0.4s ease;
     animation: tip-fade-in 0.5s ease forwards;
+    opacity: 1;
+    transform: scale(1);
 }
 
-.tip-card:hover {
-    transform: translateY(-5px);
-    box-shadow: var(--shadow-glow);
-    border-color: var(--primary);
+.tip-card:nth-child(n+4) {
+    display: none;
 }
 
 @keyframes tip-fade-in {
@@ -1096,10 +1111,15 @@ body::before {
     line-height: 1.6;
 }
 
+.tip-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-glow);
+    border-color: var(--primary);
+}
+
 .tip-card:nth-child(1) { animation-delay: 0.1s; }
 .tip-card:nth-child(2) { animation-delay: 0.2s; }
 .tip-card:nth-child(3) { animation-delay: 0.3s; }
-.tip-card:nth-child(4) { animation-delay: 0.4s; }
 
 .section-title {
     font-size: 1.5rem;

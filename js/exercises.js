@@ -680,11 +680,13 @@ function startExercise(exerciseId, levelId, moduleId) {
 }
 
 function startLevelTest() {
-    const testId = `test-${currentLevelDetail}`;
+    const levelId = currentLevelDetail;
+    const testId = `test-${levelId}`;
     const test = getTest(testId);
     
     if (!test) {
-        showToast('Prueba no encontrada', 'error');
+        showToast('Prueba no encontrada para el nivel ' + levelId, 'error');
+        console.error('Test not found:', testId);
         return;
     }
     
@@ -701,7 +703,9 @@ function startLevelTest() {
     currentExercise = {
         id: testId,
         questions: allExercises,
-        passingScore: test.passingScore
+        passingScore: test.passingScore,
+        levelId: levelId,
+        level: levelId
     };
     
     exerciseResults = [];
@@ -743,7 +747,15 @@ function renderExercise(exercise, index) {
 }
 
 function selectOption(optionIndex) {
-    const currentIndex = parseInt(document.getElementById('exercise-progress-text').textContent.split('/')[0]) - 1;
+    const isTest = currentTestType === 'test';
+    let currentIndex;
+    
+    if (isTest) {
+        currentIndex = parseInt(document.getElementById('exercise-progress-text').textContent.split('/')[0]) - 1;
+    } else {
+        currentIndex = 0;
+    }
+    
     exerciseResults[currentIndex] = optionIndex;
     
     const buttons = document.querySelectorAll('.option-btn');
@@ -819,9 +831,14 @@ function finishExercise() {
         });
     } else {
         total = 1;
-        if (exerciseResults[0] === currentExercise.correct) {
+        if (exerciseResults[0] !== undefined && exerciseResults[0] === currentExercise.correct) {
             correct = 1;
         }
+    }
+    
+    if (total === 1 && exerciseResults[0] === undefined) {
+        showToast('Por favor selecciona una respuesta', 'error');
+        return;
     }
     
     const score = Math.round((correct / total) * 100);
@@ -833,11 +850,19 @@ function finishExercise() {
 
 async function saveResults(correct, total, score, passed) {
     const user = auth.getCurrentUser();
-    if (!user) return;
+    if (!user) {
+        console.error('No user logged in');
+        return;
+    }
+    
+    console.log('Saving results:', { correct, total, score, passed, currentTestType });
     
     const resultData = {
         userEmail: user.email,
         exerciseId: currentExercise.id,
+        levelId: currentExercise.levelId || currentExercise.level,
+        moduleId: currentExercise.moduleId,
+        type: currentTestType,
         correct: correct,
         total: total,
         score: score,
@@ -845,7 +870,8 @@ async function saveResults(correct, total, score, passed) {
         date: new Date().toISOString()
     };
     
-    await db.saveResult(resultData);
+    const resultId = await db.saveResult(resultData);
+    console.log('Result saved with ID:', resultId);
     
     if (currentTestType === 'test' && passed) {
         const userLevel = user.level;
@@ -868,12 +894,13 @@ async function saveResults(correct, total, score, passed) {
             module: moduleId,
             exerciseId: currentExercise.id,
             completed: true,
-            correct: passed,
-            percentage: 100,
+            correct: correct,
+            percentage: score,
             date: new Date().toISOString()
         };
         
         await db.saveProgress(progressData);
+        console.log('Progress saved for module:', moduleId);
     }
 }
 

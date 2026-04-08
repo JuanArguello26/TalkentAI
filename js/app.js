@@ -2,8 +2,30 @@ let currentScreen = null;
 let currentLevelDetail = null;
 let currentModuleDetail = null;
 
+function createStars() {
+    const starsContainer = document.getElementById('stars');
+    if (!starsContainer) return;
+    
+    for (let i = 0; i < 100; i++) {
+        const star = document.createElement('div');
+        star.className = 'star';
+        star.style.left = Math.random() * 100 + '%';
+        star.style.top = Math.random() * 100 + '%';
+        star.style.animationDelay = Math.random() * 3 + 's';
+        star.style.width = Math.random() * 2 + 1 + 'px';
+        star.style.height = star.style.width;
+        starsContainer.appendChild(star);
+    }
+}
+
 document.addEventListener('DOMContentLoaded', async () => {
-    await initializeApp();
+    console.log('DOM loaded');
+    createStars();
+    try {
+        await initializeApp();
+    } catch (e) {
+        console.error('Init error:', e);
+    }
 });
 
 async function initializeApp() {
@@ -11,16 +33,17 @@ async function initializeApp() {
     
     try {
         await db.init();
+        await auth.init();
         
-        setTimeout(() => {
-            hideLoadingScreen();
-            
-            if (auth.isLoggedIn()) {
-                showDashboard();
-            } else {
-                showLogin();
-            }
-        }, 1500);
+        await new Promise(resolve => setTimeout(resolve, 500));
+        
+        hideLoadingScreen();
+        
+        if (auth.isLoggedIn()) {
+            showDashboard();
+        } else {
+            showLogin();
+        }
     } catch (error) {
         console.error('Error initializing app:', error);
         showToast('Error al inicializar la aplicación', 'error');
@@ -54,15 +77,32 @@ function hideAllScreens() {
         screen.classList.add('hidden');
         screen.classList.remove('active');
     });
+    
+    const authScreens = document.querySelectorAll('.auth-screen');
+    authScreens.forEach(screen => {
+        screen.classList.add('hidden');
+        screen.classList.remove('active');
+    });
 }
 
 function showScreen(screenId) {
-    hideAllScreens();
     const screen = document.getElementById(screenId);
-    if (screen) {
-        screen.classList.remove('hidden');
-        screen.classList.add('active');
-    }
+    if (!screen) return;
+    
+    document.getElementById('auth-container')?.classList.add('hidden');
+    document.querySelectorAll('.auth-screen').forEach(s => {
+        s.classList.add('hidden');
+        s.classList.remove('active');
+    });
+    
+    const screens = document.querySelectorAll('.screen');
+    screens.forEach(s => {
+        s.classList.add('hidden');
+        s.classList.remove('active');
+    });
+    
+    screen.classList.remove('hidden');
+    screen.classList.add('active');
     currentScreen = screenId;
 }
 

@@ -499,3 +499,63 @@
     transform: rotate(-90deg);
     transform-origin: 50% 50%;
 }
+
+@keyframes glow-pulse {
+    0%, 100% { 
+        box-shadow: 0 0 5px rgba(139, 92, 246, 0.3);
+    }
+    50% { 
+        box-shadow: 0 0 20px rgba(139, 92, 246, 0.6), 0 0 30px rgba(139, 92, 246, 0.3);
+    }
+}
+
+@keyframes float-up {
+    0% { 
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    50% {
+        opacity: 1;
+    }
+    100% { 
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+}
+
+@keyframes shimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+}
+
+.animate-glow {
+    animation: glow-pulse 2s ease-in-out infinite;
+}
+
+.animate-float {
+    animation: float-up 3s ease-in-out infinite;
+}
+
+.shimmer-effect {
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+    background-size: 200% 100%;
+    animation: shimmer 2s infinite;
+}
+
+@keyframes bounce-subtle {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
+}
+
+.animate-bounce {
+    animation: bounce-subtle 2s ease-in-out infinite;
+}
+
+@keyframes rotate-slow {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+.animate-rotate {
+    animation: rotate-slow 20s linear infinite;
+}

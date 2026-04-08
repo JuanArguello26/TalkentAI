@@ -959,10 +959,26 @@ function showModuleDetail(levelId, moduleId) {
     document.getElementById('module-title').textContent = module.title;
     document.getElementById('module-progress').textContent = 'Progreso: 0%';
     
-    document.getElementById('module-content').innerHTML = module.content;
+    const contentHtml = `
+        <div class="theory-section">
+            <div class="theory-header">
+                <span class="theory-icon">📚</span>
+                <h2>Teoría</h2>
+            </div>
+            <div class="theory-content">
+                ${module.content}
+            </div>
+            <button class="btn-primary theory-btn" onclick="startModuleExercises('${levelId}', '${moduleId}')">
+                <span>Comenzar Ejercicios</span>
+                <span>🚀</span>
+            </button>
+        </div>
+    `;
+    
+    document.getElementById('module-content').innerHTML = contentHtml;
     
     const exercisesList = document.getElementById('module-exercises-list');
-    let exercisesHtml = '';
+    let exercisesHtml = '<h3>Práctica</h3>';
     
     for (const exerciseId of module.exercises) {
         exercisesHtml += `
@@ -971,9 +987,9 @@ function showModuleDetail(levelId, moduleId) {
                 <span class="exercise-icon">📝</span>
                 <div class="exercise-info">
                     <h4>Ejercicio: ${exerciseId}</h4>
-                    <p>Completa este ejercicio para continuar</p>
+                    <p>Practica lo aprendido</p>
                 </div>
-                <span class="exercise-status">⭕</span>
+                <span class="exercise-status">▶️</span>
             </div>
         `;
     }
@@ -982,6 +998,13 @@ function showModuleDetail(levelId, moduleId) {
     
     showScreen('module-detail');
     currentModuleDetail = { levelId, moduleId };
+}
+
+function startModuleExercises(levelId, moduleId) {
+    const module = getModule(levelId, moduleId);
+    if (!module || !module.exercises || module.exercises.length === 0) return;
+    
+    startExercise(module.exercises[0], levelId, moduleId);
 }
 
 if (typeof window !== 'undefined') {
@@ -994,4 +1017,5 @@ if (typeof window !== 'undefined') {
     window.renderLevels = renderLevels;
     window.showLevelDetail = showLevelDetail;
     window.showModuleDetail = showModuleDetail;
+    window.startModuleExercises = startModuleExercises;
 }

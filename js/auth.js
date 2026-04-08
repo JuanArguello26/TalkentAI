@@ -1,10 +1,10 @@
 class Auth {
     constructor() {
         this.currentUser = null;
-        this.init();
     }
 
     async init() {
+        await db.init();
         const storedUser = localStorage.getItem('talkentai_user');
         if (storedUser) {
             this.currentUser = JSON.parse(storedUser);
@@ -171,7 +171,7 @@ class Auth {
     logout() {
         this.currentUser = null;
         localStorage.removeItem('talkentai_user');
-        showScreen('login-screen');
+        showLogin();
     }
 
     isLoggedIn() {
@@ -370,31 +370,43 @@ function logout() {
 }
 
 function showLogin() {
-    hideAllScreens();
+    document.getElementById('auth-container').classList.remove('hidden');
+    document.querySelectorAll('.auth-screen').forEach(s => {
+        s.classList.add('hidden');
+        s.classList.remove('active');
+    });
     document.getElementById('login-screen').classList.remove('hidden');
     document.getElementById('login-screen').classList.add('active');
-    addAnimationToScreen('login-screen');
 }
 
 function showRegister() {
-    hideAllScreens();
+    document.getElementById('auth-container').classList.remove('hidden');
+    document.querySelectorAll('.auth-screen').forEach(s => {
+        s.classList.add('hidden');
+        s.classList.remove('active');
+    });
     document.getElementById('register-screen').classList.remove('hidden');
     document.getElementById('register-screen').classList.add('active');
-    addAnimationToScreen('register-screen');
 }
 
 function showForgotPassword() {
-    hideAllScreens();
+    document.getElementById('auth-container').classList.remove('hidden');
+    document.querySelectorAll('.auth-screen').forEach(s => {
+        s.classList.add('hidden');
+        s.classList.remove('active');
+    });
     document.getElementById('forgot-screen').classList.remove('hidden');
     document.getElementById('forgot-screen').classList.add('active');
-    addAnimationToScreen('forgot-screen');
 }
 
 function showChangePasswordScreen() {
-    hideAllScreens();
+    document.getElementById('auth-container').classList.remove('hidden');
+    document.querySelectorAll('.auth-screen').forEach(s => {
+        s.classList.add('hidden');
+        s.classList.remove('active');
+    });
     document.getElementById('change-password-screen').classList.remove('hidden');
     document.getElementById('change-password-screen').classList.add('active');
-    addAnimationToScreen('change-password-screen');
 }
 
 function togglePassword(inputId) {

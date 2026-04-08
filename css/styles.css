@@ -1395,26 +1395,28 @@ body {
 
 .option-btn {
     padding: 16px 20px;
-    background: var(--light);
-    border: 2px solid var(--light-dark);
+    background: var(--dark-light);
+    border: 2px solid var(--dark-medium);
     border-radius: var(--radius);
     cursor: pointer;
     text-align: left;
     font-size: 1rem;
-    color: var(--dark);
+    color: var(--light);
     transition: var(--transition);
     font-family: inherit;
+    width: 100%;
 }
 
 .option-btn:hover {
-    background: var(--light-dark);
-    border-color: var(--primary);
+    background: var(--dark-medium);
+    border-color: var(--primary-light);
+    color: var(--primary-light);
 }
 
 .option-btn.selected {
-    background: rgba(99, 102, 241, 0.1);
+    background: rgba(139, 92, 246, 0.2);
     border-color: var(--primary);
-    color: var(--primary);
+    color: var(--primary-light);
 }
 
 .option-btn.correct {

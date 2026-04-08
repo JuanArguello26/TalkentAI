@@ -670,6 +670,7 @@ function startExercise(exerciseId, levelId, moduleId) {
     currentTestType = 'exercise';
     
     document.getElementById('exercise-container').innerHTML = renderExercise(exercise, 0);
+    attachOptionListeners();
     document.getElementById('exercise-progress-fill').style.width = '0%';
     document.getElementById('exercise-progress-text').textContent = '1/1';
     document.getElementById('prev-btn').style.display = 'none';
@@ -677,6 +678,15 @@ function startExercise(exerciseId, levelId, moduleId) {
     
     showScreen('exercise-screen');
     addAnimationToScreen('exercise-screen');
+}
+
+function attachOptionListeners() {
+    const buttons = document.querySelectorAll('.option-btn');
+    buttons.forEach((btn, index) => {
+        btn.onclick = function() {
+            selectOption(index);
+        };
+    });
 }
 
 function startLevelTest() {
@@ -711,6 +721,7 @@ function startLevelTest() {
     exerciseResults = [];
     
     document.getElementById('exercise-container').innerHTML = renderExercise(currentExercise, 0);
+    attachOptionListeners();
     updateExerciseProgress(0, allExercises.length);
     document.getElementById('prev-btn').style.display = 'none';
     document.getElementById('next-btn').textContent = 'Siguiente →';
@@ -734,8 +745,7 @@ function renderExercise(exercise, index) {
     data.options.forEach((option, optIndex) => {
         const selected = exerciseResults[index] === optIndex;
         html += `
-            <button class="option-btn ${selected ? 'selected' : ''}" 
-                    onclick="selectOption(${optIndex})">
+            <button class="option-btn ${selected ? 'selected' : ''}" data-index="${optIndex}">
                 ${option}
             </button>
         `;
@@ -747,6 +757,9 @@ function renderExercise(exercise, index) {
 }
 
 function selectOption(optionIndex) {
+    console.log('selectOption called with:', optionIndex);
+    console.log('currentTestType:', currentTestType);
+    
     const isTest = currentTestType === 'test';
     let currentIndex;
     
@@ -755,6 +768,8 @@ function selectOption(optionIndex) {
     } else {
         currentIndex = 0;
     }
+    
+    console.log('currentIndex:', currentIndex);
     
     exerciseResults[currentIndex] = optionIndex;
     
@@ -770,7 +785,7 @@ function selectOption(optionIndex) {
 function nextExercise() {
     const isTest = currentTestType === 'test';
     const total = isTest ? currentExercise.questions.length : 1;
-    const currentIndex = exerciseResults.length;
+    const currentIndex = parseInt(document.getElementById('exercise-progress-text').textContent.split('/')[0]) - 1;
     
     if (exerciseResults[currentIndex] === undefined) {
         showToast('Por favor selecciona una respuesta', 'error');
@@ -780,6 +795,7 @@ function nextExercise() {
     if (currentIndex < total - 1) {
         exerciseResults.push(null);
         document.getElementById('exercise-container').innerHTML = renderExercise(currentExercise, currentIndex + 1);
+        attachOptionListeners();
         updateExerciseProgress(currentIndex + 1, total);
         
         if (currentIndex === 0) {
@@ -801,6 +817,7 @@ function prevExercise() {
     
     if (currentIndex > 0) {
         document.getElementById('exercise-container').innerHTML = renderExercise(currentExercise, currentIndex - 1);
+        attachOptionListeners();
         updateExerciseProgress(currentIndex - 1, total);
         
         if (currentIndex === 1) {

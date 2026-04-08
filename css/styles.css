@@ -1381,10 +1381,38 @@ body {
 }
 
 .exercise-question {
-    font-size: 1.2rem;
-    color: var(--dark);
+    font-size: 1.3rem;
+    color: var(--light);
     margin-bottom: 30px;
     line-height: 1.6;
+    font-weight: 500;
+}
+
+.exercise-tip {
+    margin-top: 25px;
+    padding: 20px;
+    background: linear-gradient(135deg, rgba(139, 92, 246, 0.15) 0%, rgba(16, 185, 129, 0.1) 100%);
+    border-radius: var(--radius);
+    border-left: 4px solid var(--primary);
+    display: flex;
+    gap: 15px;
+    align-items: flex-start;
+}
+
+.exercise-tip .tip-icon {
+    font-size: 1.5rem;
+}
+
+.exercise-tip .tip-content {
+    color: var(--light);
+    line-height: 1.6;
+    font-size: 0.95rem;
+}
+
+.exercise-tip strong {
+    color: var(--primary-light);
+    display: block;
+    margin-bottom: 5px;
 }
 
 .exercise-options {

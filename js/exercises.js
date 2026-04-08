@@ -5,7 +5,8 @@ const exercisesData = {
         options: ['Hello', 'Goodbye', 'Thank you', 'Please'],
         correct: 0,
         level: 'A1',
-        module: 'a1-intro'
+        module: 'a1-intro',
+        explanation: '"Hello" es el saludo más universal en inglés. Se usa en cualquier momento del día para saludar.'
     },
     'greetings-2': {
         type: 'multiple-choice',
@@ -13,7 +14,8 @@ const exercisesData = {
         options: ['Hola', 'Gracias', 'Adiós', 'Por favor'],
         correct: 2,
         level: 'A1',
-        module: 'a1-intro'
+        module: 'a1-intro',
+        explanation: '"Goodbye" es la forma formal de decir "adiós" en inglés. Es la contracción de "God be with ye" (Dios esté contigo).'
     },
     'greetings-3': {
         type: 'multiple-choice',
@@ -21,7 +23,8 @@ const exercisesData = {
         options: ['Good morning', 'Good night', 'Good afternoon', 'See you later'],
         correct: 0,
         level: 'A1',
-        module: 'a1-intro'
+        module: 'a1-intro',
+        explanation: '"Good morning" se usa desde que nos levantamos hasta aproximadamente las 12:00. Es el saludo estándar de la mañana.'
     },
     'numbers-1': {
         type: 'multiple-choice',
@@ -29,7 +32,8 @@ const exercisesData = {
         options: ['Three', 'Five', 'Seven', 'Nine'],
         correct: 1,
         level: 'A1',
-        module: 'a1-numbers'
+        module: 'a1-numbers',
+        explanation: '"Five" es el número 5. Los números en inglés son: one (1), two (2), three (3), four (4), five (5).'
     },
     'numbers-2': {
         type: 'multiple-choice',
@@ -37,7 +41,8 @@ const exercisesData = {
         options: ['12', '20', '2', '200'],
         correct: 1,
         level: 'A1',
-        module: 'a1-numbers'
+        module: 'a1-numbers',
+        explanation: '"Twenty" significa 20. Las decenas en inglés son: twenty (20), thirty (30), forty (40), fifty (50), etc.'
     },
     'dates-1': {
         type: 'multiple-choice',
@@ -45,7 +50,8 @@ const exercisesData = {
         options: ['Lunes', 'Martes', 'Miércoles', 'Jueves'],
         correct: 0,
         level: 'A1',
-        module: 'a1-numbers'
+        module: 'a1-numbers',
+        explanation: '"Monday" es lunes. Los días de la semana en inglés son: Monday (lunes), Tuesday (martes), Wednesday (miércoles), Thursday (jueves), Friday (viernes), Saturday (sábado), Sunday (domingo).'
     },
     'colors-1': {
         type: 'multiple-choice',
@@ -53,15 +59,18 @@ const exercisesData = {
         options: ['Rojo', 'Azul', 'Verde', 'Amarillo'],
         correct: 1,
         level: 'A1',
-        module: 'a1-colors'
+        module: 'a1-colors',
+        explanation: '"Blue" significa azul. Es uno de los colores primarios y también se usa metafóricamente para expresar tristeza ("feeling blue").'
     },
     'colors-2': {
         type: 'multiple-choice',
         question: 'Selecciona el color verde:',
         options: ['Red', 'Yellow', 'Green', 'Black'],
         correct: 2,
+        correct: 2,
         level: 'A1',
-        module: 'a1-colors'
+        module: 'a1-colors',
+        explanation: '"Green" significa verde. Este color se asocia con la naturaleza y también se usa para describir a alguien inexperto ("greenhorn").'
     },
     'family-1': {
         type: 'multiple-choice',
@@ -69,7 +78,8 @@ const exercisesData = {
         options: ['Father', 'Mother', 'Sister', 'Brother'],
         correct: 1,
         level: 'A1',
-        module: 'a1-family'
+        module: 'a1-family',
+        explanation: '"Mother" es la forma formal de decir madre. También puedes usar "mom" que es más informal y común en inglés americano.'
     },
     'family-2': {
         type: 'multiple-choice',
@@ -77,7 +87,8 @@ const exercisesData = {
         options: ['Abuelo', 'Abuela', 'Tío', 'Tía'],
         correct: 1,
         level: 'A1',
-        module: 'a1-family'
+        module: 'a1-family',
+        explanation: '"Grandmother" significa abuela. El prefijo "grand-" se usa para denoting familiares de otra generación: grandfather (abuelo), grandmother (abuela).'
     },
     'verbs-1': {
         type: 'multiple-choice',
@@ -85,7 +96,8 @@ const exercisesData = {
         options: ['is/are', 'was/were', 'will be', 'be'],
         correct: 0,
         level: 'A2',
-        module: 'a2-verbs'
+        module: 'a2-verbs',
+        explanation: 'El verbo "to be" en presente tiene tres formas: "I am", "you are", "he/she/it is". Las formas contractas son: I\'m, you\'re, he\'s, she\'s, it\'s.'
     },
     'verbs-2': {
         type: 'multiple-choice',
@@ -93,7 +105,8 @@ const exercisesData = {
         options: ['is', 'are', 'am', 'be'],
         correct: 0,
         level: 'A2',
-        module: 'a2-verbs'
+        module: 'a2-verbs',
+        explanation: 'Con "she" (ella) usamos "is". Recordar: I = am, you = are, he/she/it = is, we/you/they = are.'
     },
     'verbs-3': {
         type: 'multiple-choice',
@@ -101,7 +114,8 @@ const exercisesData = {
         options: ['to + verb', 'verb + ing', 'will + verb', 'have + verb'],
         correct: 1,
         level: 'A2',
-        module: 'a2-verbs'
+        module: 'a2-verbs',
+        explanation: 'El presente continuo (present continuous) se forma con el verbo "to be" + verbo en -ing. Ejemplo: "I am reading" (Estoy leyendo).'
     },
     'adjectives-1': {
         type: 'multiple-choice',
@@ -109,7 +123,8 @@ const exercisesData = {
         options: ['more good', 'gooder', 'better', 'best'],
         correct: 2,
         level: 'A2',
-        module: 'a2-adjectives'
+        module: 'a2-adjectives',
+        explanation: '"Good" es un adjetivo irregular. Su comparativo es "better" (mejor) y su superlativo es "best" (el mejor).'
     },
     'adjectives-2': {
         type: 'multiple-choice',
@@ -353,52 +368,62 @@ const levelTests = {
             {
                 question: '¿Cómo se dice "Gracias" en inglés?',
                 options: ['Please', 'Thank you', 'Sorry', 'Hello'],
-                correct: 1
+                correct: 1,
+                explanation: '"Thank you" es la forma estándar de dar las gracias. "Please" significa "por favor" y se usa para peticiones.'
             },
             {
                 question: 'El número 10 en inglés es:',
                 options: ['Ten', 'Nine', 'Eleven', 'Eight'],
-                correct: 0
+                correct: 0,
+                explanation: '"Ten" significa 10. Los números del 1 al 10: one, two, three, four, five, six, seven, eight, nine, ten.'
             },
             {
                 question: '"Red" es el color:',
                 options: ['Azul', 'Verde', 'Rojo', 'Amarillo'],
-                correct: 2
+                correct: 2,
+                explanation: '"Red" significa rojo. Es un color primario y también se usa para describir enojo o peligro.'
             },
             {
                 question: '¿Qué día es "Friday"?',
                 options: ['Lunes', 'Viernes', 'Miércoles', 'Domingo'],
-                correct: 1
+                correct: 1,
+                explanation: '"Friday" es viernes. Deriva del dios nórdico Frigg. Es el día favorito de muchos porque es el último día laborable.'
             },
             {
                 question: '"Mother" significa:',
                 options: ['Padre', 'Madre', 'Hermano', 'Tío'],
-                correct: 1
+                correct: 1,
+                explanation: '"Mother" significa madre. Es la forma formal; "mom" es más informal y cariñosa.'
             },
             {
                 question: 'Saludo para la tarde:',
                 options: ['Good morning', 'Good night', 'Good afternoon', 'Goodbye'],
-                correct: 2
+                correct: 2,
+                explanation: '"Good afternoon" se usa de 12:00 a 18:00 aproximadamente. "Good morning" es solo por la mañana.'
             },
             {
                 question: '"Grandfather" es:',
                 options: ['Abuela', 'Abuelo', 'Tío', 'Primo'],
-                correct: 1
+                correct: 1,
+                explanation: '"Grandfather" significa abuelo. "Grand" es el prefijo que indica generaciones anteriores.'
             },
             {
                 question: 'El número 7 se dice:',
                 options: ['Six', 'Eight', 'Seven', 'Five'],
-                correct: 2
+                correct: 2,
+                explanation: '"Seven" significa 7. Es un número especial en muchas culturas occidentales (siete días de la semana, siete vidas del gato).'
             },
             {
                 question: '"Blue" es el color:',
                 options: ['Amarillo', 'Verde', 'Azul', 'Rosa'],
-                correct: 2
+                correct: 2,
+                explanation: '"Blue" significa azul. También se usa metafóricamente para describir tristeza o estado de ánimo bajo.'
             },
             {
                 question: '"Goodbye" significa:',
                 options: ['Hola', 'Gracias', 'Adiós', 'Por favor'],
-                correct: 2
+                correct: 2,
+                explanation: '"Goodbye" significa adiós. Es una contracción de "God be with ye" (Dios esté contigo), del inglés antiguo.'
             }
         ],
         passingScore: 70
@@ -752,6 +777,17 @@ function renderExercise(exercise, index) {
     });
     
     html += '</div>';
+    
+    if (data.explanation) {
+        html += `
+            <div class="exercise-tip">
+                <span class="tip-icon">💡</span>
+                <div class="tip-content">
+                    <strong>Aprende más:</strong> ${data.explanation}
+                </div>
+            </div>
+        `;
+    }
     
     return html;
 }

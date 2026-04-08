@@ -803,8 +803,6 @@ async function checkLevelTestAvailability(levelId) {
     
     return true;
 }
-    addAnimationToScreen('exercise-screen');
-}
 
 function renderExercise(exercise, index) {
     const isTest = currentTestType === 'test';

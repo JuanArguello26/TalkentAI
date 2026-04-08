@@ -48,7 +48,9 @@ class Database {
         let allProgress = JSON.parse(localStorage.getItem(key) || '[]');
         
         const existingIndex = allProgress.findIndex(p => 
-            p.level === progressData.level && p.module === progressData.module
+            p.level === progressData.level && 
+            p.module === progressData.module && 
+            p.exerciseId === progressData.exerciseId
         );
         
         if (existingIndex >= 0) {

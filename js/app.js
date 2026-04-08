@@ -225,7 +225,67 @@ const tipsData = [
     {
         icon: '🤝',
         title: 'No temas equivocarte',
-        content: 'Los errores son parte del aprendizaje. No te avergüences de hablar con.acento o cometer errores. ¡Es normal!'
+        content: 'Los errores son parte del aprendizaje. No te avergüences de hablar con acento o cometer errores. ¡Es normal!'
+    },
+    {
+        icon: '📚',
+        title: 'Lee en inglés',
+        content: 'Lee libros, artículos o noticias en inglés. Comienza con nivel básico y ve aumentando la dificultad gradualmente.'
+    },
+    {
+        icon: '🎵',
+        title: 'Canta canciones',
+        content: 'Las canciones ayudan a aprender vocabulario y pronunciación. Intenta seguir la letra mientras escuchas.'
+    },
+    {
+        icon: '💬',
+        title: 'Practica con nativos',
+        content: 'Usa apps de intercambio de idiomas o comunidades online para practicar conversación con hablantes nativos.'
+    },
+    {
+        icon: '🏠',
+        title: 'Etiqueta objetos',
+        content: 'Pega notas en inglés en objetos de tu casa: door, window, chair, table. Así verás las palabras cada día.'
+    },
+    {
+        icon: '🧠',
+        title: 'Asocacia imágenes',
+        content: 'Conecta nuevas palabras con imágenes mentales. Es más fácil recordar vocabulario cuando visualizas conceptos.'
+    },
+    {
+        icon: '⏱️',
+        title: 'Técnica Pomodoro',
+        content: 'Estudia 25 minutos, descansa 5. Haz 4 sesiones y luego descansa 15-30. Mantiene la concentración alta.'
+    },
+    {
+        icon: '📖',
+        title: 'Lee en voz alta',
+        content: 'Leer en voz alta mejora pronunciación y fluidez. Escucha tu grabación y compara con hablantes nativos.'
+    },
+    {
+        icon: '🎮',
+        title: 'Juegos en inglés',
+        content: 'Juega videojuegos en inglés. Es una forma divertida de aprender vocabulario específico y frases comunes.'
+    },
+    {
+        icon: '📱',
+        title: 'Cambia idioma del teléfono',
+        content: 'Cambia el idioma de tu smartphone a inglés. Así practicarás términos tecnológicos y de uso diario.'
+    },
+    {
+        icon: '✍️',
+        title: 'Lleva un vocabulario',
+        content: 'Anota palabras nuevas con su traducción y una oración de ejemplo. Revisa este vocabulario regularmente.'
+    },
+    {
+        icon: '🌟',
+        title: 'Celebra logros',
+        content: 'Chaque vez que completes un módulo o ejercicio, celebra tu progreso. Mantiene la motivación alta.'
+    },
+    {
+        icon: '🔤',
+        title: 'Aprende raíces de palabras',
+        content: 'Muchas palabras comparten raíces. Aprender "port" (levar) ayuda con: transport, portable, import, export.'
     }
 ];
 
@@ -235,38 +295,35 @@ function initTipsCarousel() {
     const carousel = document.getElementById('tips-carousel');
     if (!carousel) return;
     
-    const shuffled = [...tipsData].sort(() => Math.random() - 0.5);
+    const shuffled = [...tipsData].sort(() => Math.random() - 0.5).slice(0, 6);
     
-    carousel.innerHTML = shuffled.map(tip => `
-        <div class="tip-card">
+    carousel.innerHTML = shuffled.map((tip, index) => `
+        <div class="tip-card" style="animation-delay: ${index * 0.1}s">
             <span class="tip-icon">${tip.icon}</span>
             <h4 class="tip-title">${tip.title}</h4>
             <p class="tip-content">${tip.content}</p>
         </div>
     `).join('');
     
-    const cards = carousel.querySelectorAll('.tip-card');
     let activeIndex = 0;
+    const cards = carousel.querySelectorAll('.tip-card');
     
     if (cards.length > 1) {
         cards.forEach((card, index) => {
             if (index !== 0) {
-                card.style.opacity = '0.5';
-                card.style.filter = 'blur(1px)';
+                card.style.opacity = '0.6';
             }
         });
         
         setInterval(() => {
-            cards[activeIndex].style.opacity = '0.5';
-            cards[activeIndex].style.filter = 'blur(1px)';
+            cards[activeIndex].style.opacity = '0.6';
             cards[activeIndex].style.transform = 'scale(0.95)';
             
             activeIndex = (activeIndex + 1) % cards.length;
             
             cards[activeIndex].style.opacity = '1';
-            cards[activeIndex].style.filter = 'blur(0px)';
             cards[activeIndex].style.transform = 'scale(1)';
-        }, 4000);
+        }, 3500);
     }
 }
 

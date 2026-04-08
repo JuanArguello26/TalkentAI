@@ -1044,18 +1044,28 @@ function getLevelProgress(levelId) {
         }
         
         const progress = await db.getProgress(user.email, levelId);
+        const results = await db.getResults(user.email);
         const level = levelsData[levelId];
         
-        if (!level || progress.length === 0) {
+        if (!level || results.length === 0) {
             resolve(0);
             return;
         }
         
-        const totalExercises = level.modules.reduce((acc, m) => acc + m.exercises.length, 0);
-        const completedExercises = progress.filter(p => p.completed).length;
+        const levelResults = results.filter(r => r.level === levelId || r.levelId === levelId);
+        const passedExercises = levelResults.filter(r => r.passed && r.score >= 70).length;
         
-        const percentage = Math.round((completedExercises / totalExercises) * 100);
-        resolve(percentage);
+        const allExerciseIds = [];
+        level.modules.forEach(m => {
+            m.exercises.forEach(e => {
+                if (!allExerciseIds.includes(e)) {
+                    allExerciseIds.push(e);
+                }
+            });
+        });
+        
+        const percentage = Math.round((passedExercises / allExerciseIds.length) * 100);
+        resolve(Math.min(percentage, 100));
     });
 }
 

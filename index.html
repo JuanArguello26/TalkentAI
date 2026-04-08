@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="TalkentAI - Plataforma de aprendizaje de inglés interactiva">
-    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="icon" type="image/png" href="logo.png">
     <title>TalkentAI - Aprende Inglés</title>
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/animations.css">
@@ -31,6 +31,7 @@
                     <div class="loader-planet orbit-2"></div>
                     <div class="loader-planet orbit-3"></div>
                 </div>
+                <img src="logo.png" alt="TalkentAI" class="loader-logo">
                 <h2>TalkentAI</h2>
                 <p>Preparando tu experiencia de aprendizaje...</p>
             </div>
@@ -39,10 +40,10 @@
         <!-- Auth Screens -->
         <div id="auth-container" class="screen hidden">
             <!-- Login -->
-            <div id="login-screen" class="auth-screen">
+            <div id="login-screen" class="auth-screen hidden">
                 <div class="auth-card fade-in">
                     <div class="logo">
-                        <span class="logo-icon">📚</span>
+                        <img src="logo.png" alt="TalkentAI" class="logo-img">
                         <h1>TalkentAI</h1>
                     </div>
                     <p class="tagline">Domina el inglés a tu propio ritmo</p>
@@ -173,7 +174,7 @@
                 <div class="header-left">
                     <button class="menu-toggle" onclick="toggleMenu()">☰</button>
                     <div class="logo-small">
-                        <span>📚</span>
+                        <img src="logo.png" alt="TalkentAI" class="logo-small-img">
                         <span>TalkentAI</span>
                     </div>
                 </div>
@@ -226,6 +227,13 @@
                     <h2 class="section-title">Tus Niveles de Inglés</h2>
                     <div class="levels-grid" id="levels-grid">
                         <!-- Los niveles se cargan dinámicamente -->
+                    </div>
+                </div>
+                
+                <div class="tips-section fade-in-up">
+                    <h2 class="section-title">💡 Tips de Aprendizaje</h2>
+                    <div class="tips-carousel" id="tips-carousel">
+                        <!-- Los tips se cargan dinámicamente -->
                     </div>
                 </div>
             </main>

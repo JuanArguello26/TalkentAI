@@ -23,9 +23,53 @@ function createStars() {
     }
 }
 
+function initMouseReactiveBackground() {
+    let mouseX = 0, mouseY = 0;
+    let targetX = 0, targetY = 0;
+    let currentMouseX = 0, currentMouseY = 0;
+    
+    document.addEventListener('mousemove', (e) => {
+        currentMouseX = (e.clientX / window.innerWidth - 0.5) * 30;
+        currentMouseY = (e.clientY / window.innerHeight - 0.5) * 30;
+    });
+    
+    function animate() {
+        targetX += (currentMouseX - targetX) * 0.03;
+        targetY += (currentMouseY - targetY) * 0.03;
+        
+        const shapes = document.querySelectorAll('.shape');
+        shapes.forEach((shape, index) => {
+            const speed = (index + 1) * 0.8;
+            shape.style.transform = `translate(${targetX * speed}px, ${targetY * speed}px)`;
+        });
+        
+        const stars = document.querySelectorAll('.star');
+        stars.forEach((star) => {
+            const depth = parseFloat(star.style.top) / 100 || 0.5;
+            star.style.transform = `translate(${targetX * depth * 3}px, ${targetY * depth * 3}px)`;
+        });
+        
+        const bodyBefore = document.querySelector('body::before');
+        if (bodyBefore) {
+            document.body.style.setProperty('--mouse-x', `${targetX}px`);
+            document.body.style.setProperty('--mouse-y', `${targetY}px`);
+        }
+        
+        const nebula = document.querySelector('#app::before');
+        
+        document.querySelectorAll('.screen.active').forEach(screen => {
+            const bg = screen.querySelector('[class*="background"]');
+        });
+        
+        requestAnimationFrame(animate);
+    }
+    animate();
+}
+
 document.addEventListener('DOMContentLoaded', async () => {
     console.log('DOM loaded');
     createStars();
+    initMouseReactiveBackground();
     try {
         await initializeApp();
     } catch (e) {
@@ -40,7 +84,7 @@ async function initializeApp() {
         await db.init();
         await auth.init();
         
-        await new Promise(resolve => setTimeout(resolve, 500));
+        await new Promise(resolve => setTimeout(resolve, 2500));
         
         hideLoadingScreen();
         
@@ -127,8 +171,78 @@ async function showDashboard() {
     updateUserUI();
     await renderLevels();
     await updateDashboardStats();
+    initTipsCarousel();
     showScreen('dashboard');
     addAnimationToScreen('dashboard');
+}
+
+const tipsData = [
+    {
+        icon: '🎯',
+        title: 'Practica diariamente',
+        content: 'Dedica al menos 15 minutos diarios al inglés. La consistencia es más efectiva que estudiar horas largas una vez por semana.'
+    },
+    {
+        icon: '👂',
+        title: 'Escucha activamente',
+        content: 'Escucha canciones, podcasts o viendo películas en inglés con subtítulos. Esto mejora tu comprensión auditiva y pronunciación.'
+    },
+    {
+        icon: '🗣️',
+        title: 'Habla en voz alta',
+        content: 'No tengas miedo de speak aloud. Practica explicando temas en voz alta, incluso si estás solo. Puedes grabarte y escucharte.'
+    },
+    {
+        icon: '📝',
+        title: 'Escribe cada día',
+        content: 'Mantén un diario en inglés. Escribir te ayuda a consolidar vocabulario y gramática de manera práctica y personal.'
+    },
+    {
+        icon: '🔄',
+        title: 'Repasa con espaciado',
+        content: 'Usa la técnica de repetición espaciada. Revisa lo aprendido en intervalos: 1 día, 3 días, 1 semana, 2 semanas.'
+    },
+    {
+        icon: '💡',
+        title: 'Aprende frases, no palabras',
+        content: 'En lugar de memorizar palabras sueltas, aprende frases completas. "How are you?" es más útil que solo "How".'
+    },
+    {
+        icon: '🎬',
+        title: 'Contenido que te guste',
+        content: 'Mira series o películas sobre temas que te apasionen. El interés hace que el aprendizaje sea más natural y divertido.'
+    },
+    {
+        icon: '🤝',
+        title: 'No temas equivocarte',
+        content: 'Los errores son parte del aprendizaje. No te avergüences de hablar con.acento o cometer errores. ¡Es normal!'
+    }
+];
+
+let currentTipIndex = 0;
+
+function initTipsCarousel() {
+    const carousel = document.getElementById('tips-carousel');
+    if (!carousel) return;
+    
+    const shuffled = [...tipsData].sort(() => Math.random() - 0.5);
+    
+    carousel.innerHTML = shuffled.map(tip => `
+        <div class="tip-card">
+            <span class="tip-icon">${tip.icon}</span>
+            <h4 class="tip-title">${tip.title}</h4>
+            <p class="tip-content">${tip.content}</p>
+        </div>
+    `).join('');
+    
+    currentTipIndex = 0;
+    setInterval(() => {
+        const cards = carousel.querySelectorAll('.tip-card');
+        if (cards.length > 1) {
+            currentTipIndex = (currentTipIndex + 1) % cards.length;
+            cards[currentTipIndex].scrollIntoView({ behavior: 'smooth', inline: 'start' });
+        }
+    }, 5000);
 }
 
 async function updateDashboardStats() {
@@ -136,19 +250,19 @@ async function updateDashboardStats() {
     if (!user) return;
     
     const results = await db.getResults(user.email);
-    const exercisesCompleted = results.length;
-    const testsPassed = results.filter(r => r.passed).length;
+    const exercisesCompleted = results.filter(r => r.type === 'exercise').length;
+    const testsPassed = results.filter(r => r.passed && r.type === 'test').length;
     
-    const totalExercises = Object.keys(exercisesData).length;
+    const totalExercises = Object.keys(window.exercisesData || {}).length || 50;
     const overallProgress = Math.round((exercisesCompleted / totalExercises) * 100);
     
     document.getElementById('exercises-completed').textContent = exercisesCompleted;
     document.getElementById('tests-passed').textContent = testsPassed;
     document.getElementById('current-level').textContent = user.level || 'A1';
-    document.getElementById('overall-progress').textContent = `${overallProgress}%`;
+    document.getElementById('overall-progress').textContent = `${Math.min(overallProgress, 100)}%`;
     
     const circumference = 2 * Math.PI * 45;
-    const offset = circumference - (overallProgress / 100) * circumference;
+    const offset = circumference - (Math.min(overallProgress, 100) / 100) * circumference;
     document.getElementById('overall-progress-ring').style.strokeDashoffset = offset;
 }
 

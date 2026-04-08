@@ -725,33 +725,84 @@ function startLevelTest() {
         return;
     }
     
-    currentTestType = 'test';
-    currentTestData = test;
+    checkLevelTestAvailability(levelId).then(isAvailable => {
+        if (!isAvailable) {
+            return;
+        }
+        
+        currentTestType = 'test';
+        currentTestData = test;
+        
+        const allExercises = test.questions.map((q, index) => ({
+            type: 'multiple-choice',
+            question: q.question,
+            options: q.options,
+            correct: q.correct
+        }));
+        
+        currentExercise = {
+            id: testId,
+            questions: allExercises,
+            passingScore: test.passingScore,
+            levelId: levelId,
+            level: levelId
+        };
+        
+        exerciseResults = [];
+        
+        document.getElementById('exercise-container').innerHTML = renderExercise(currentExercise, 0);
+        attachOptionListeners();
+        updateExerciseProgress(0, allExercises.length);
+        document.getElementById('prev-btn').style.display = 'none';
+        document.getElementById('next-btn').textContent = 'Siguiente →';
+        
+        showScreen('exercise-screen');
+        addAnimationToScreen('exercise-screen');
+    });
+}
+
+async function checkLevelTestAvailability(levelId) {
+    const user = auth.getCurrentUser();
+    if (!user) {
+        showToast('Debes iniciar sesión para acceder a la prueba', 'error');
+        return false;
+    }
     
-    const allExercises = test.questions.map((q, index) => ({
-        type: 'multiple-choice',
-        question: q.question,
-        options: q.options,
-        correct: q.correct
-    }));
+    const results = await db.getResults(user.email);
+    const levelResults = results.filter(r => (r.level === levelId || r.levelId === levelId) && r.type === 'exercise');
     
-    currentExercise = {
-        id: testId,
-        questions: allExercises,
-        passingScore: test.passingScore,
-        levelId: levelId,
-        level: levelId
-    };
+    const level = levelsData[levelId];
+    if (!level) return false;
     
-    exerciseResults = [];
+    const allExerciseIds = [];
+    level.modules.forEach(m => {
+        m.exercises.forEach(e => {
+            if (!allExerciseIds.includes(e)) {
+                allExerciseIds.push(e);
+            }
+        });
+    });
     
-    document.getElementById('exercise-container').innerHTML = renderExercise(currentExercise, 0);
-    attachOptionListeners();
-    updateExerciseProgress(0, allExercises.length);
-    document.getElementById('prev-btn').style.display = 'none';
-    document.getElementById('next-btn').textContent = 'Siguiente →';
+    const completedExercises = levelResults.filter(r => r.passed && r.score >= 70).length;
+    const requiredExercises = allExerciseIds.length;
     
-    showScreen('exercise-screen');
+    if (completedExercises < requiredExercises) {
+        showToast(`Completa todos los ejercicios del nivel primero (${completedExercises}/${requiredExercises})`, 'error');
+        
+        const btn = document.getElementById('start-test-btn');
+        if (btn) {
+            btn.style.opacity = '0.5';
+            btn.style.cursor = 'not-allowed';
+            setTimeout(() => {
+                btn.style.opacity = '1';
+                btn.style.cursor = 'pointer';
+            }, 2000);
+        }
+        return false;
+    }
+    
+    return true;
+}
     addAnimationToScreen('exercise-screen');
 }
 
@@ -1068,4 +1119,5 @@ if (typeof window !== 'undefined') {
     window.retryExercise = retryExercise;
     window.continueAfterResult = continueAfterResult;
     window.exitExercise = exitExercise;
+    window.checkLevelTestAvailability = checkLevelTestAvailability;
 }

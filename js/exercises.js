@@ -774,26 +774,37 @@ async function checkLevelTestAvailability(levelId) {
     const level = levelsData[levelId];
     if (!level) return false;
     
-    const allExerciseIds = [];
+    const availableExercises = [];
     level.modules.forEach(m => {
         m.exercises.forEach(e => {
-            if (!allExerciseIds.includes(e)) {
-                allExerciseIds.push(e);
+            if (!availableExercises.includes(e)) {
+                availableExercises.push(e);
             }
         });
     });
     
     const completedExercises = levelResults.filter(r => r.passed && r.score >= 70).length;
-    const requiredExercises = allExerciseIds.length;
+    const requiredExercises = availableExercises.length;
+    
+    const percentage = Math.round((completedExercises / requiredExercises) * 100);
     
     if (completedExercises < requiredExercises) {
-        showToast(`Completa todos los ejercicios del nivel primero (${completedExercises}/${requiredExercises})`, 'error');
+        showToast(`Completa los ejercicios del nivel (${completedExercises}/${requiredExercises} - ${percentage}%)`, 'error');
         
         const btn = document.getElementById('start-test-btn');
         if (btn) {
             btn.style.opacity = '0.5';
             btn.style.cursor = 'not-allowed';
             setTimeout(() => {
+                btn.style.opacity = '1';
+                btn.style.cursor = 'pointer';
+            }, 2000);
+        }
+        return false;
+    }
+    
+    return true;
+}
                 btn.style.opacity = '1';
                 btn.style.cursor = 'pointer';
             }, 2000);
@@ -1071,9 +1082,11 @@ function retryExercise() {
     
     if (currentTestType === 'test') {
         document.getElementById('exercise-container').innerHTML = renderExercise(currentExercise, 0);
+        attachOptionListeners();
         updateExerciseProgress(0, currentExercise.questions.length);
     } else {
         document.getElementById('exercise-container').innerHTML = renderExercise(currentExercise, 0);
+        attachOptionListeners();
     }
     
     document.getElementById('prev-btn').style.display = 'none';

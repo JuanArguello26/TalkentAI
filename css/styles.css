@@ -1064,14 +1064,30 @@ body::before {
 .tips-carousel {
     display: flex;
     gap: 20px;
-    flex-wrap: wrap;
-    justify-content: center;
+    overflow-x: auto;
+    padding: 10px 5px;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+}
+
+.tips-carousel::-webkit-scrollbar {
+    height: 6px;
+}
+
+.tips-carousel::-webkit-scrollbar-track {
+    background: var(--dark);
+    border-radius: 10px;
+}
+
+.tips-carousel::-webkit-scrollbar-thumb {
+    background: var(--dark-medium);
+    border-radius: 10px;
 }
 
 .tip-card {
-    flex: 1;
+    flex: 0 0 auto;
     min-width: 280px;
-    max-width: 350px;
+    max-width: 320px;
     background: linear-gradient(145deg, var(--dark-light) 0%, var(--dark-medium) 100%);
     border-radius: var(--radius-lg);
     padding: 25px;

@@ -27,39 +27,49 @@ function initMouseReactiveBackground() {
     let mouseX = 0, mouseY = 0;
     let targetX = 0, targetY = 0;
     let currentMouseX = 0, currentMouseY = 0;
+    let autoTime = 0;
     
     document.addEventListener('mousemove', (e) => {
-        currentMouseX = (e.clientX / window.innerWidth - 0.5) * 30;
-        currentMouseY = (e.clientY / window.innerHeight - 0.5) * 30;
+        currentMouseX = (e.clientX / window.innerWidth - 0.5) * 2;
+        currentMouseY = (e.clientY / window.innerHeight - 0.5) * 2;
     });
     
     function animate() {
-        targetX += (currentMouseX - targetX) * 0.03;
-        targetY += (currentMouseY - targetY) * 0.03;
+        autoTime += 0.01;
+        
+        targetX += (currentMouseX - targetX) * 0.05;
+        targetY += (currentMouseY - targetY) * 0.05;
+        
+        const autoX = Math.sin(autoTime) * 30;
+        const autoY = Math.cos(autoTime * 0.7) * 20;
         
         const shapes = document.querySelectorAll('.shape');
         shapes.forEach((shape, index) => {
-            const speed = (index + 1) * 0.8;
-            shape.style.transform = `translate(${targetX * speed}px, ${targetY * speed}px)`;
+            const baseX = autoX * (index + 1) * 0.5;
+            const baseY = autoY * (index + 1) * 0.3;
+            const repulsionX = -targetX * (index + 1) * 20;
+            const repulsionY = -targetY * (index + 1) * 20;
+            shape.style.transform = `translate(${baseX + repulsionX}px, ${baseY + repulsionY}px)`;
         });
         
         const stars = document.querySelectorAll('.star');
-        stars.forEach((star) => {
+        stars.forEach((star, index) => {
             const depth = parseFloat(star.style.top) / 100 || 0.5;
-            star.style.transform = `translate(${targetX * depth * 3}px, ${targetY * depth * 3}px)`;
+            const starAutoX = Math.sin(autoTime + index * 0.1) * 10 * depth;
+            const starAutoY = Math.cos(autoTime * 0.8 + index * 0.1) * 8 * depth;
+            const repulsionX = -targetX * depth * 50;
+            const repulsionY = -targetY * depth * 50;
+            star.style.transform = `translate(${starAutoX + repulsionX}px, ${starAutoY + repulsionY}px)`;
         });
         
-        const bodyBefore = document.querySelector('body::before');
-        if (bodyBefore) {
-            document.body.style.setProperty('--mouse-x', `${targetX}px`);
-            document.body.style.setProperty('--mouse-y', `${targetY}px`);
+        const nebula = document.querySelector('body::before');
+        if (nebula) {
+            const nebulaAutoX = Math.sin(autoTime * 0.5) * 15;
+            const nebulaAutoY = Math.cos(autoTime * 0.3) * 10;
+            const nebulaRepulsionX = -targetX * 60;
+            const nebulaRepulsionY = -targetY * 60;
+            nebula.style.transform = `translate(${nebulaAutoX + nebulaRepulsionX}px, ${nebulaAutoY + nebulaRepulsionY}px) scale(${1 + Math.abs(targetX) * 0.1})`;
         }
-        
-        const nebula = document.querySelector('#app::before');
-        
-        document.querySelectorAll('.screen.active').forEach(screen => {
-            const bg = screen.querySelector('[class*="background"]');
-        });
         
         requestAnimationFrame(animate);
     }
@@ -235,21 +245,27 @@ function initTipsCarousel() {
         </div>
     `).join('');
     
-    let currentCard = 0;
     const cards = carousel.querySelectorAll('.tip-card');
+    let activeIndex = 0;
     
     if (cards.length > 1) {
+        cards.forEach((card, index) => {
+            if (index !== 0) {
+                card.style.opacity = '0.5';
+                card.style.filter = 'blur(1px)';
+            }
+        });
+        
         setInterval(() => {
-            currentCard = (currentCard + 1) % cards.length;
-            cards.forEach((card, index) => {
-                if (index === currentCard) {
-                    card.style.opacity = '1';
-                    card.style.transform = 'scale(1)';
-                } else {
-                    card.style.opacity = '0.5';
-                    card.style.transform = 'scale(0.95)';
-                }
-            });
+            cards[activeIndex].style.opacity = '0.5';
+            cards[activeIndex].style.filter = 'blur(1px)';
+            cards[activeIndex].style.transform = 'scale(0.95)';
+            
+            activeIndex = (activeIndex + 1) % cards.length;
+            
+            cards[activeIndex].style.opacity = '1';
+            cards[activeIndex].style.filter = 'blur(0px)';
+            cards[activeIndex].style.transform = 'scale(1)';
         }, 4000);
     }
 }

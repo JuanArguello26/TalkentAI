@@ -1311,6 +1311,109 @@ body {
     line-height: 1.8;
 }
 
+.theory-content h3 {
+    color: var(--primary-light);
+    font-size: 1.3rem;
+    margin: 30px 0 15px;
+    padding-top: 15px;
+    border-top: 1px solid var(--dark-medium);
+}
+
+.theory-content h3:first-of-type {
+    margin-top: 20px;
+    border-top: none;
+    padding-top: 0;
+}
+
+.theory-content p {
+    color: var(--light);
+    margin-bottom: 15px;
+    line-height: 1.7;
+}
+
+.theory-content .intro-text {
+    font-size: 1.1rem;
+    color: var(--primary-light);
+    margin-bottom: 25px;
+    padding: 15px;
+    background: linear-gradient(135deg, rgba(139, 92, 246, 0.1), rgba(16, 185, 129, 0.05));
+    border-radius: var(--radius);
+    border-left: 3px solid var(--primary);
+}
+
+.theory-box {
+    background: var(--dark-card);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius);
+    padding: 20px;
+    margin: 20px 0;
+    backdrop-filter: blur(10px);
+}
+
+.theory-box h4 {
+    color: var(--secondary);
+    font-size: 1.1rem;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.theory-box h4::before {
+    content: '📌';
+}
+
+.theory-box ul {
+    list-style: none;
+    padding: 0;
+}
+
+.theory-box li {
+    padding: 8px 0;
+    border-bottom: 1px solid var(--dark-medium);
+    color: var(--light);
+}
+
+.theory-box li:last-child {
+    border-bottom: none;
+}
+
+.important-notes {
+    background: linear-gradient(135deg, rgba(245, 158, 11, 0.1), rgba(239, 68, 68, 0.05));
+    border: 1px solid rgba(245, 158, 11, 0.3);
+    border-radius: var(--radius);
+    padding: 20px;
+    margin: 25px 0;
+}
+
+.important-notes p {
+    margin: 10px 0;
+    color: var(--light);
+}
+
+.important-notes strong {
+    color: var(--accent);
+}
+
+.content-example {
+    background: rgba(16, 185, 129, 0.1);
+    border-left: 4px solid var(--secondary);
+    padding: 20px;
+    border-radius: var(--radius);
+    margin: 20px 0;
+}
+
+.content-example p {
+    margin: 0;
+    font-style: italic;
+    color: var(--light);
+}
+
+.content-example strong {
+    color: var(--secondary);
+    font-style: normal;
+}
+
 .theory-btn {
     margin-top: 30px;
     padding: 18px 40px;

@@ -716,7 +716,7 @@ function attachOptionListeners() {
 
 function startLevelTest() {
     const levelId = currentLevelDetail;
-    const testId = `test-${levelId}`;
+    const testId = `test-${levelId.toLowerCase()}`;
     const test = getTest(testId);
     
     if (!test) {
@@ -777,18 +777,7 @@ function renderExercise(exercise, index) {
     });
     
     html += '</div>';
-    
-    if (data.explanation) {
-        html += `
-            <div class="exercise-tip">
-                <span class="tip-icon">💡</span>
-                <div class="tip-content">
-                    <strong>Aprende más:</strong> ${data.explanation}
-                </div>
-            </div>
-        `;
-    }
-    
+
     return html;
 }
 
@@ -816,6 +805,28 @@ function selectOption(optionIndex) {
             btn.classList.add('selected');
         }
     });
+    
+    const data = isTest ? currentExercise.questions[currentIndex] : currentExercise;
+    if (data.explanation) {
+        let tipHtml = `
+            <div class="exercise-tip">
+                <span class="tip-icon">💡</span>
+                <div class="tip-content">
+                    <strong>${optionIndex === data.correct ? '¡Correcto! Aprende más:' : 'Pista:'}</strong> ${data.explanation}
+                </div>
+            </div>
+        `;
+        
+        const existingTip = document.querySelector('.exercise-tip');
+        if (existingTip) {
+            existingTip.remove();
+        }
+        
+        const optionsContainer = document.querySelector('.exercise-options');
+        if (optionsContainer) {
+            optionsContainer.insertAdjacentHTML('afterend', tipHtml);
+        }
+    }
 }
 
 function nextExercise() {

@@ -12,29 +12,106 @@ const levelsData = {
                 icon: '📖',
                 description: 'Aprende los fundamentos básicos del inglés',
                 content: `
-                    <h2>Bienvenido al Inglés Básico</h2>
-                    <p>En este módulo aprenderás las bases del inglés: saludos, presentaciones y vocabulario esencial.</p>
-                    
-                    <h3>Saludos Básicos</h3>
-                    <ul>
-                        <li><strong>Hello</strong> - Hola</li>
-                        <li><strong>Good morning</strong> - Buenos días</li>
-                        <li><strong>Good afternoon</strong> - Buenas tardes</li>
-                        <li><strong>Good evening</strong> - Buenas noches</li>
-                        <li><strong>Goodbye</strong> - Adiós</li>
-                        <li><strong>See you later</strong> - Nos vemos luego</li>
-                    </ul>
-                    
-                    <h3>Presentaciones</h3>
-                    <ul>
-                        <li><strong>My name is...</strong> - Me llamo...</li>
-                        <li><strong>I am from...</strong> - Soy de...</li>
-                        <li><strong>I am...</strong> - Yo soy...</li>
-                        <li><strong>Nice to meet you</strong> - Mucho gusto</li>
-                    </ul>
-                    
-                    <div class="content-example">
-                        <p>"Hello! My name is Maria. I am from Spain. Nice to meet you!"</p>
+                    <div class="theory-section">
+                        <div class="theory-header">
+                            <span class="theory-icon">📚</span>
+                            <h2>Bienvenido al Inglés Básico</h2>
+                        </div>
+                        <div class="theory-content">
+                            <p class="intro-text">En este módulo aprenderás las bases del inglés: saludos, presentaciones y vocabulario esencial. ¡Comenzaremos desde cero!</p>
+                            
+                            <h3>🤝 Los Saludos (Greetings)</h3>
+                            <p>Los saludos son la forma de iniciar una conversación. En inglés, los saludos varían según la hora del día:</p>
+                            
+                            <div class="theory-box">
+                                <h4>Saludos Formales</h4>
+                                <ul>
+                                    <li><strong>Hello</strong> - Hola (saludo general)</li>
+                                    <li><strong>Good morning</strong> - Buenos días (hasta las 12pm)</li>
+                                    <li><strong>Good afternoon</strong> - Buenas tardes (12pm - 6pm)</li>
+                                    <li><strong>Good evening</strong> - Buenas noches (después de 6pm)</li>
+                                    <li><strong>Goodbye</strong> - Adiós</li>
+                                    <li><strong>See you later</strong> - Nos vemos luego</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="theory-box">
+                                <h4>Saludos Informales</h4>
+                                <ul>
+                                    <li><strong>Hi</strong> - Hola (muy común)</li>
+                                    <li><strong>Hey</strong> - Hey (muy informal)</li>
+                                    <li><strong>What's up?</strong> - ¿Qué tal?</li>
+                                    <li><strong>How's it going?</strong> - ¿Cómo vas?</li>
+                                </ul>
+                            </div>
+                            
+                            <h3>👋 ¿Cómo Responder a un Saludo?</h3>
+                            <p>Cuando alguien te saluda, puedes responder de varias formas:</p>
+                            <ul>
+                                <li><strong>Hi! / Hello!</strong> - ¡Hola!</li>
+                                <li><strong>Good morning/afternoon!</strong> - ¡Buenos días/tardes!</li>
+                                <li><strong>Nice to meet you</strong> - Mucho gusto</li>
+                                <li><strong>How are you?</strong> - ¿Cómo estás?</li>
+                            </ul>
+                            
+                            <h3>📝 Las Presentaciones (Introductions)</h3>
+                            <p>Para presentarte, usa estas expresiones:</p>
+                            
+                            <div class="theory-box">
+                                <h4>Presentarte a ti mismo</h4>
+                                <ul>
+                                    <li><strong>My name is...</strong> - Me llamo... / Mi nombre es...</li>
+                                    <li><strong>I'm...</strong> - Yo soy... (I'm = I am)</li>
+                                    <li><strong>I am from...</strong> - Soy de... (indicar país/ciudad)</li>
+                                    <li><strong>I'm from...</strong> - Yo soy de...</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="theory-box">
+                                <h4>Preguntar el nombre de alguien</h4>
+                                <ul>
+                                    <li><strong>What's your name?</strong> - ¿Cómo te llamas?</li>
+                                    <li><strong>Where are you from?</strong> - ¿De dónde eres?</li>
+                                    <li><strong>Nice to meet you</strong> - Mucho gusto (en respuesta)</li>
+                                </ul>
+                            </div>
+                            
+                            <h3>🔑 Puntos Clave a Recordar</h3>
+                            <div class="important-notes">
+                                <p><strong>1. "I am" se puede contraer:</strong></p>
+                                <p>I am = I'm (pronunciado "aim")</p>
+                                <p>Ejemplo: "I'm Maria" = "Me llamo Maria"</p>
+                                
+                                <p><strong>2. El orden de las palabras importa:</strong></p>
+                                <p>En inglés, el sujeto va primero: <em>My name is...</em></p>
+                                <p>NO se dice: "Name my is..."</p>
+                                
+                                <p><strong>3. Las mayúsculas en nombres:</strong></p>
+                                <p>Solo se usan al inicio de oraciones y para nombres propios.</p>
+                            </div>
+                            
+                            <h3>📖 Ejemplos en Contexto</h3>
+                            <div class="content-example">
+                                <p><strong>Diálogo 1:</strong></p>
+                                <p>A: "Hello! My name is John. What's your name?"</p>
+                                <p>B: "Hi John! Nice to meet you. I'm Maria."</p>
+                            </div>
+                            
+                            <div class="content-example">
+                                <p><strong>Diálogo 2:</strong></p>
+                                <p>A: "Good morning! Where are you from?"</p>
+                                <p>B: "Good morning! I'm from Mexico. And you?"</p>
+                                <p>A: "I'm from Spain. Nice to meet you!"</p>
+                            </div>
+                            
+                            <h3>📝 Práctica Sugerida</h3>
+                            <p>Antes de hacer los ejercicios, practica diciendo en voz alta:</p>
+                            <ul>
+                                <li>"Hello! My name is [tu nombre]. Nice to meet you!"</li>
+                                <li>"I'm from [tu país/ciudad]."</li>
+                                <li>"Good morning/afternoon/evening!"</li>
+                            </ul>
+                        </div>
                     </div>
                 `,
                 exercises: ['greetings-1', 'greetings-2', 'greetings-3']
@@ -45,41 +122,96 @@ const levelsData = {
                 icon: '🔢',
                 description: 'Aprende a contar y expresar fechas',
                 content: `
-                    <h2>Números en Inglés</h2>
-                    <p>Los números son esenciales en cualquier idioma. Vamos a aprender los números del 1 al 100.</p>
-                    
-                    <h3>Números del 1 al 20</h3>
-                    <ul>
-                        <li>1 - One | 2 - Two | 3 - Three | 4 - Four | 5 - Five</li>
-                        <li>6 - Six | 7 - Seven | 8 - Eight | 9 - Nine | 10 - Ten</li>
-                        <li>11 - Eleven | 12 - Twelve | 13 - Thirteen | 14 - Fourteen | 15 - Fifteen</li>
-                        <li>16 - Sixteen | 17 - Seventeen | 18 - Eighteen | 19 - Nineteen | 20 - Twenty</li>
-                    </ul>
-                    
-                    <h3>Decenas</h3>
-                    <ul>
-                        <li>20 - Twenty | 30 - Thirty | 40 - Forty | 50 - Fifty</li>
-                        <li>60 - Sixty | 70 - Seventy | 80 - Eighty | 90 - Ninety</li>
-                        <li>100 - One hundred</li>
-                    </ul>
-                    
-                    <h3>Días de la Semana</h3>
-                    <ul>
-                        <li><strong>Monday</strong> - Lunes</li>
-                        <li><strong>Tuesday</strong> - Martes</li>
-                        <li><strong>Wednesday</strong> - Miércoles</li>
-                        <li><strong>Thursday</strong> - Jueves</li>
-                        <li><strong>Friday</strong> - Viernes</li>
-                        <li><strong>Saturday</strong> - Sábado</li>
-                        <li><strong>Sunday</strong> - Domingo</li>
-                    </ul>
-                    
-                    <h3>Meses del Año</h3>
-                    <ul>
-                        <li>January, February, March, April</li>
-                        <li>May, June, July, August</li>
-                        <li>September, October, November, December</li>
-                    </ul>
+                    <div class="theory-section">
+                        <div class="theory-header">
+                            <span class="theory-icon">🔢</span>
+                            <h2>Números en Inglés</h2>
+                        </div>
+                        <div class="theory-content">
+                            <p class="intro-text">Los números son esenciales en cualquier idioma. En esta lección aprenderás los números del 1 al 100 y cómo expresar fechas.</p>
+                            
+                            <h3>📊 Los Números del 1 al 20</h3>
+                            <p>Estos son los números básicos que más usarás:</p>
+                            
+                            <div class="theory-box">
+                                <h4>Números Cardinales</h4>
+                                <ul>
+                                    <li><strong>1 - One</strong> | <strong>2 - Two</strong> | <strong>3 - Three</strong> | <strong>4 - Four</strong> | <strong>5 - Five</strong></li>
+                                    <li><strong>6 - Six</strong> | <strong>7 - Seven</strong> | <strong>8 - Eight</strong> | <strong>9 - Nine</strong> | <strong>10 - Ten</strong></li>
+                                    <li><strong>11 - Eleven</strong> | <strong>12 - Twelve</strong> | <strong>13 - Thirteen</strong> | <strong>14 - Fourteen</strong> | <strong>15 - Fifteen</strong></li>
+                                    <li><strong>16 - Sixteen</strong> | <strong>17 - Seventeen</strong> | <strong>18 - Eighteen</strong> | <strong>19 - Nineteen</strong> | <strong>20 - Twenty</strong></li>
+                                </ul>
+                            </div>
+                            
+                            <h3>🎯 Las Decenas (20, 30, 40...)</h3>
+                            <p>Para formar las decenas, agrega "-ty" al número base (con algunas excepciones):</p>
+                            
+                            <div class="theory-box">
+                                <h4>Decenas</h4>
+                                <ul>
+                                    <li><strong>20 - Twenty</strong> (no "twenty"</li>
+                                    <li><strong>30 - Thirty</strong> (no "three-ty")</li>
+                                    <li><strong>40 - Forty</strong> (no "fourty")</li>
+                                    <li><strong>50 - Fifty</strong> | <strong>60 - Sixty</strong> | <strong>70 - Seventy</strong></li>
+                                    <li><strong>80 - Eighty</strong> | <strong>90 - Ninety</strong> | <strong>100 - One hundred</strong></li>
+                                </ul>
+                            </div>
+                            
+                            <h3>➕ Números del 21 al 99</h3>
+                            <p>Se forman con: <strong>decena + guión + unidad</strong></p>
+                            <ul>
+                                <li>21 = Twenty-one | 22 = Twenty-two | 23 = Twenty-three</li>
+                                <li>32 = Thirty-two | 45 = Forty-five | 67 = Sixty-seven</li>
+                                <li>99 = Ninety-nine</li>
+                            </ul>
+                            
+                            <h3>📅 Los Días de la Semana</h3>
+                            <p>Los días de la semana siempre se escriben con mayúscula en inglés:</p>
+                            
+                            <div class="theory-box">
+                                <ul>
+                                    <li><strong>Monday (Mon)</strong> - Lunes</li>
+                                    <li><strong>Tuesday (Tue)</strong> - Martes</li>
+                                    <li><strong>Wednesday (Wed)</strong> - Miércoles</li>
+                                    <li><strong>Thursday (Thu)</strong> - Jueves</li>
+                                    <li><strong>Friday (Fri)</strong> - Viernes</li>
+                                    <li><strong>Saturday (Sat)</strong> - Sábado</li>
+                                    <li><strong>Sunday (Sun)</strong> - Domingo</li>
+                                </ul>
+                            </div>
+                            
+                            <h3>🗓️ Los Meses del Año</h3>
+                            <p>Los meses también se escriben con mayúscula:</p>
+                            <ul>
+                                <li><strong>January</strong> - Enero | <strong>February</strong> - Febrero | <strong>March</strong> - Marzo | <strong>April</strong> - Abril</li>
+                                <li><strong>May</strong> - Mayo | <strong>June</strong> - Junio | <strong>July</strong> - Julio | <strong>August</strong> - Agosto</li>
+                                <li><strong>September</strong> - Septiembre | <strong>October</strong> - Octubre | <strong>November</strong> - Noviembre | <strong>December</strong> - Diciembre</li>
+                            </ul>
+                            
+                            <h3>📝 ¿Cómo Decir la Fecha?</h3>
+                            <div class="important-notes">
+                                <p><strong>Formato americano:</strong> Month/Day/Year</p>
+                                <p>Ejemplo: "01/15/2024" = "January 15th, 2024"</p>
+                                
+                                <p><strong>Formato británico:</strong> Day/Month/Year</p>
+                                <p>Ejemplo: "15/01/2024" = "15th January, 2024"</p>
+                            </div>
+                            
+                            <h3>🔑 Puntos Clave</h3>
+                            <ul>
+                                <li>Los ordinales (1st, 2nd, 3rd...) usan: <strong>st, nd, rd, th</strong></li>
+                                <li>1st = First | 2nd = Second | 3rd = Third | 4th = Fourth</li>
+                                <li>"What day is it?" = ¿Qué día es hoy?</li>
+                                <li>"What's the date?" = ¿Qué fecha es?</li>
+                            </ul>
+                            
+                            <div class="content-example">
+                                <p><strong>Diálogo:</strong></p>
+                                <p>A: "What day is today?"</p>
+                                <p>B: "Today is Monday, January 15th."</p>
+                            </div>
+                        </div>
+                    </div>
                 `,
                 exercises: ['numbers-1', 'numbers-2', 'dates-1']
             },
@@ -89,33 +221,70 @@ const levelsData = {
                 icon: '🎨',
                 description: 'Aprende los colores en inglés',
                 content: `
-                    <h2>Los Colores en Inglés</h2>
-                    <p>Conocer los colores es útil en muchas situaciones cotidianas.</p>
-                    
-                    <h3>Colores Básicos</h3>
-                    <ul>
-                        <li><strong>Red</strong> - Rojo</li>
-                        <li><strong>Blue</strong> - Azul</li>
-                        <li><strong>Yellow</strong> - Amarillo</li>
-                        <li><strong>Green</strong> - Verde</li>
-                        <li><strong>Orange</strong> - Naranja</li>
-                        <li><strong>Purple</strong> - Morado</li>
-                        <li><strong>Pink</strong> - Rosa</li>
-                        <li><strong>Black</strong> - Negro</li>
-                        <li><strong>White</strong> - Blanco</li>
-                        <li><strong>Brown</strong> - Marrón</li>
-                    </ul>
-                    
-                    <h3>Colores con "Light" y "Dark"</h3>
-                    <ul>
-                        <li>Light blue - Azul claro</li>
-                        <li>Dark green - Verde oscuro</li>
-                        <li>Light pink - Rosa claro</li>
-                        <li>Dark brown - Marrón oscuro</li>
-                    </ul>
-                    
-                    <div class="content-example">
-                        <p>"The sky is blue and the grass is green."</p>
+                    <div class="theory-section">
+                        <div class="theory-header">
+                            <span class="theory-icon">🎨</span>
+                            <h2>Los Colores en Inglés</h2>
+                        </div>
+                        <div class="theory-content">
+                            <p class="intro-text">Los colores son muy útiles en la vida cotidiana: describir objetos, personas, estados de ánimo y más.</p>
+                            
+                            <h3>🌈 Colores Básicos (Basic Colors)</h3>
+                            <p>Estos son los colores más comunes que debes conocer:</p>
+                            
+                            <div class="theory-box">
+                                <h4>Colores Primarios y Secundarios</h4>
+                                <ul>
+                                    <li><span style="color: #ef4444;">🔴</span> <strong>Red</strong> - Rojo</li>
+                                    <li><span style="color: #3b82f6;">🔵</span> <strong>Blue</strong> - Azul</li>
+                                    <li><span style="color: #eab308;">🟡</span> <strong>Yellow</strong> - Amarillo</li>
+                                    <li><span style="color: #22c55e;">🟢</span> <strong>Green</strong> - Verde</li>
+                                    <li><span style="color: #f97316;">🟠</span> <strong>Orange</strong> - Naranja</li>
+                                    <li><span style="color: #a855f7;">🟣</span> <strong>Purple</strong> - Morado</li>
+                                    <li><span style="color: #ec4899;">🩷</span> <strong>Pink</strong> - Rosa</li>
+                                    <li><span style="color: #000000;">⬛</span> <strong>Black</strong> - Negro</li>
+                                    <li><span style="color: #ffffff; border: 1px solid #ccc;">⬜</span> <strong>White</strong> - Blanco</li>
+                                    <li><span style="color: #92400e;">🟤</span> <strong>Brown</strong> - Marrón/Castaño</li>
+                                </ul>
+                            </div>
+                            
+                            <h3>🎭 Colores con Light y Dark</h3>
+                            <p>Para crear variaciones, usa <strong>light</strong> (claro) y <strong>dark</strong> (oscuro):</p>
+                            
+                            <div class="theory-box">
+                                <h4>Ejemplos de Colores Modificados</h4>
+                                <ul>
+                                    <li><strong>Light blue</strong> - Azul claro (celeste)</li>
+                                    <li><strong>Dark green</strong> - Verde oscuro</li>
+                                    <li><strong>Light pink</strong> - Rosa claro</li>
+                                    <li><strong>Dark brown</strong> - Marrón oscuro</li>
+                                    <li><strong>Light gray / Light grey</strong> - Gris claro</li>
+                                    <li><strong>Dark gray / Dark grey</strong> - Gris oscuro</li>
+                                </ul>
+                            </div>
+                            
+                            <h3>💡 Usos Comunes de los Colores</h3>
+                            <ul>
+                                <li><strong>The sky is blue.</strong> - El cielo es azul.</li>
+                                <li><strong>I like the red dress.</strong> - Me gusta el vestido rojo。</li>
+                                <li><strong>My car is black.</strong> - Mi coche es negro。</li>
+                                <li><strong>She has brown hair.</strong> - Ella tiene cabello castaño.</li>
+                            </ul>
+                            
+                            <h3>🔑 Expresiones con Colores</h3>
+                            <div class="important-notes">
+                                <p><strong>"To be" con colores:</strong> Use "is/are" + color</p>
+                                <p>✓ The car <strong>is red</strong>. (El coche es rojo)</p>
+                                <p>✓ Her eyes <strong>are blue</strong>. (Sus ojos son azules)</p>
+                            </div>
+                            
+                            <div class="content-example">
+                                <p><strong>Diálogo:</strong></p>
+                                <p>A: "What color is your car?"</p>
+                                <p>B: "My car is dark blue. What about yours?"</p>
+                                <p>A: "Mine is red!"</p>
+                            </div>
+                        </div>
                     </div>
                 `,
                 exercises: ['colors-1', 'colors-2']
@@ -126,35 +295,82 @@ const levelsData = {
                 icon: '👨‍👩‍👧',
                 description: 'Vocabulario familiar',
                 content: `
-                    <h2>Vocabulario de la Familia</h2>
-                    <p>Aprende a hablar sobre tu familia en inglés.</p>
-                    
-                    <h3>Miembros de la Familia</h3>
-                    <ul>
-                        <li><strong>Family</strong> - Familia</li>
-                        <li><strong>Mother / Mom</strong> - Madre / Mamá</li>
-                        <li><strong>Father / Dad</strong> - Padre / Papá</li>
-                        <li><strong>Parents</strong> - Padres</li>
-                        <li><strong>Sister</strong> - Hermana</li>
-                        <li><strong>Brother</strong> - Hermano</li>
-                        <li><strong>Grandmother</strong> - Abuela</li>
-                        <li><strong>Grandfather</strong> - Abuelo</li>
-                        <li><strong>Aunt</strong> - Tía</li>
-                        <li><strong>Uncle</strong> - Tío</li>
-                        <li><strong>Cousin</strong> - Primo/a</li>
-                        <li><strong>Niece</strong> - Sobrina</li>
-                        <li><strong>Nephew</strong> - Sobrino</li>
-                    </ul>
-                    
-                    <h3>Relaciones</h3>
-                    <ul>
-                        <li><strong>Son</strong> - Hijo</li>
-                        <li><strong>Daughter</strong> - Hija</li>
-                        <li><strong>Children</strong> - Hijos</li>
-                    </ul>
-                    
-                    <div class="content-example">
-                        <p>"This is my family. My mother's name is Rosa. I have one brother and one sister."</p>
+                    <div class="theory-section">
+                        <div class="theory-header">
+                            <span class="theory-icon">👨‍👩‍👧</span>
+                            <h2>Vocabulario de la Familia</h2>
+                        </div>
+                        <div class="theory-content">
+                            <p class="intro-text">La familia es un tema fundamental en cualquier idioma. Aprenderás a presentar y describir a tu familia en inglés.</p>
+                            
+                            <h3>👨‍👩‍👧‍👦 Miembros de la Familia (Family Members)</h3>
+                            <p>Comenzemos con los familiares más cercanos:</p>
+                            
+                            <div class="theory-box">
+                                <h4>Familia Cercana (Immediate Family)</h4>
+                                <ul>
+                                    <li><strong>Mother / Mom</strong> - Madre / Mamá</li>
+                                    <li><strong>Father / Dad</strong> - Padre / Papá</li>
+                                    <li><strong>Parents</strong> - Padres (madre + padre)</li>
+                                    <li><strong>Sister</strong> - Hermana</li>
+                                    <li><strong>Brother</strong> - Hermano</li>
+                                    <li><strong>Son</strong> - Hijo</li>
+                                    <li><strong>Daughter</strong> - Hija</li>
+                                    <li><strong>Children</strong> - Hijos</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="theory-box">
+                                <h4>Abuelos y Tíos (Extended Family)</h4>
+                                <ul>
+                                    <li><strong>Grandmother / Grandma</strong> - Abuela</li>
+                                    <li><strong>Grandfather / Grandpa</strong> - Abuelo</li>
+                                    <li><strong>Grandparents</strong> - Abuelos</li>
+                                    <li><strong>Aunt</strong> - Tía</li>
+                                    <li><strong>Uncle</strong> - Tío</li>
+                                    <li><strong>Cousin</strong> - Primo/a (primo)</li>
+                                    <li><strong>Niece</strong> - Sobrina</li>
+                                    <li><strong>Nephew</strong> - Sobrino</li>
+                                </ul>
+                            </div>
+                            
+                            <h3>🏠 ¿Cómo Presentar tu Familia?</h3>
+                            <p>Usa "This is..." para presentar familiares:</p>
+                            <ul>
+                                <li><strong>This is my mother.</strong> - Esta es mi madre.</li>
+                                <li><strong>This is my brother.</strong> - Este es mi hermano.</li>
+                                <li><strong>These are my parents.</strong> - Estos son mis padres.</li>
+                                <li><strong>Those are my grandparents.</strong> - Esos son mis abuelos.</li>
+                            </ul>
+                            
+                            <h3>👥 Hermanos y Familias Numerosas</h3>
+                            <div class="theory-box">
+                                <h4>Describiendo Hermanos</h4>
+                                <ul>
+                                    <li><strong>I have one sister.</strong> - Tengo una hermana.</li>
+                                    <li><strong>I have two brothers.</strong> - Tengo dos hermanos.</li>
+                                    <li><strong>I have a younger sister.</strong> - Tengo una hermana menor.</li>
+                                    <li><strong>I have an older brother.</strong> - Tengo un hermano mayor.</li>
+                                    <li><strong>I'm an only child.</strong> - Soy hijo único.</li>
+                                </ul>
+                            </div>
+                            
+                            <h3>🔑 Puntos Clave</h3>
+                            <div class="important-notes">
+                                <p><strong>Nota importante:</strong> En inglés, no diferenciamos entre primo/a con una palabra diferente. "Cousin" sirve para ambos.</p>
+                                <p><strong>"This is" vs "These are":</strong></p>
+                                <p>- This is (singular) | These are (plural)</p>
+                                <p>- That is (singular, distante) | Those are (plural, distante)</p>
+                            </div>
+                            
+                            <div class="content-example">
+                                <p><strong>Diálogo:</strong></p>
+                                <p>A: "Tell me about your family."</p>
+                                <p>B: "Sure! This is my mother, and this is my father. I have one sister and one brother. My sister is younger than me."</p>
+                                <p>A: "That's nice! Do you have grandparents?"</p>
+                                <p>B: "Yes, these are my grandparents. They live in Mexico."</p>
+                            </div>
+                        </div>
                     </div>
                 `,
                 exercises: ['family-1', 'family-2']

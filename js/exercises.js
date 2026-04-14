@@ -67,7 +67,6 @@ const exercisesData = {
         question: 'Selecciona el color verde:',
         options: ['Red', 'Yellow', 'Green', 'Black'],
         correct: 2,
-        correct: 2,
         level: 'A1',
         module: 'a1-colors',
         explanation: '"Green" significa verde. Este color se asocia con la naturaleza y también se usa para describir a alguien inexperto ("greenhorn").'
@@ -796,15 +795,6 @@ async function checkLevelTestAvailability(levelId) {
             btn.style.opacity = '0.5';
             btn.style.cursor = 'not-allowed';
             setTimeout(() => {
-                btn.style.opacity = '1';
-                btn.style.cursor = 'pointer';
-            }, 2000);
-        }
-        return false;
-    }
-    
-    return true;
-}
                 btn.style.opacity = '1';
                 btn.style.cursor = 'pointer';
             }, 2000);

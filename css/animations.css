@@ -827,7 +827,23 @@
 
 /* Auth card entrance */
 .auth-card {
-    animation: slideUp 0.5s ease, glow 3s ease-in-out infinite;
+    animation: auth-card-enter 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes auth-card-enter {
+    0% {
+        opacity: 0;
+        transform: translateY(40px) scale(0.9);
+        filter: blur(10px);
+    }
+    60% {
+        transform: translateY(-5px) scale(1.02);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+        filter: blur(0);
+    }
 }
 
 @keyframes slideUp {
@@ -844,6 +860,26 @@
 @keyframes glow {
     0%, 100% { box-shadow: var(--shadow-lg), 0 0 40px rgba(139, 92, 246, 0.1); }
     50% { box-shadow: var(--shadow-lg), 0 0 60px rgba(139, 92, 246, 0.2); }
+}
+
+.form-group {
+    animation: form-field-enter 0.4s ease backwards;
+}
+
+.form-group:nth-child(1) { animation-delay: 0.1s; }
+.form-group:nth-child(2) { animation-delay: 0.2s; }
+.form-group:nth-child(3) { animation-delay: 0.3s; }
+.form-group:nth-child(4) { animation-delay: 0.4s; }
+
+@keyframes form-field-enter {
+    0% {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
 }
 
 /* Menu toggle animation */
